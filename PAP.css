@@ -1,0 +1,102 @@
+body {
+	font-family: 'Ubuntu', Arial;
+	background: #e0e0e0;
+	line-height: 20px;
+	font-weight: 300;
+}
+
+h1 {
+	text-shadow: 0px 5px 5px black;
+}
+
+#wrapper {
+	width: 90%;
+	max-width: 1024px;
+	min-width: 768px;
+	margin: auto;
+}
+
+.date {
+	float: left;
+	color: gray;
+	font-size: 150%;
+	width: 30px;
+	font-family: 'Terminal Dosis Light';
+	text-align: center;
+	margin-right: 15px;
+	line-height: 30px;
+}
+
+.month .name {
+	font-family: 'Terminal Dosis Light';
+	line-height: 60px;
+	color: #404040;
+	font-size: 300%;
+	margin-bottom: 5px;
+	display: block;
+	border-bottom: 2px solid  #404040;
+}
+
+.entry {
+	overflow: hidden;
+	margin-bottom: 5px;
+}
+
+.content {
+	overflow: hidden;
+	box-shadow: 0px 1px 2px gray, inset 0px 1px 2px gray;
+	background: white;
+	behavior: url(PIE.htc);
+    border-radius: 5px;
+}
+
+.github {
+	background: #c0c0c0 url(https://d3nwyuy0nl342s.cloudfront.net/images/modules/dashboard/news/site.png) no-repeat 50% 50%;
+	float: right;
+	text-indent: -9999px;
+	width: 16px;
+	height: 16px;
+	display: block;
+	border-radius: 2px;
+	behavior: url(PIE.htc);
+}
+.github:hover {
+	background-color: #ffc080;
+}
+
+dl{
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+dt {
+	float: left;
+	width: 50%;
+	padding: 4px;
+	clear: left;
+	border-right: 1px solid #c0c0c0;
+	margin-right: -1px;
+}
+dd {
+	font-style: italic;
+	border-left: 1px solid #c0c0c0;
+	padding: 4px;
+	behavior: url(PIE.htc);
+	overflow: hidden;
+}
+.todo {
+	line-height: 20px;
+	border-top: 1px solid #c0c0c0;
+	padding: 4px;
+	background: #f0f0f0;
+	behavior: url(PIE.htc);
+    border-radius: 0px 0px 5px 5px;
+}
+
+.subheading {
+	display: inline-block;
+	font-family: 'Terminal Dosis Light';
+	color: gray;
+	margin-right: 1ex;
+	height: 20px;
+}
