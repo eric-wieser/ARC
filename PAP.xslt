@@ -80,7 +80,7 @@
         <xsl:if test="todo">
           <div class="todo">
             <span class="subheading">Todo:</span>
-            <xsl:value-of select="todo"/>
+            <xsl:copy-of select="todo/node()" />
           </div>
         </xsl:if>
       </div>
@@ -92,11 +92,11 @@
       <xsl:if test="@commit">
         <a class="github" href="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011/commit/{@commit}" title="View the code on github!">Commit</a>
       </xsl:if>
-      <xsl:value-of select="description"/>
+      <xsl:copy-of select="description/node()" />
     </dt>
     <xsl:if test="purpose">
     <dd>
-      <xsl:value-of select="purpose"/>
+      <xsl:copy-of select="purpose/node()" />
     </dd>
     </xsl:if>
   </xsl:template>
