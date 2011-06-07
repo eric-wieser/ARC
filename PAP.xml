@@ -227,7 +227,7 @@
 	</entry>
 	<entry>
 		<date>06/05/2011</date>
-		<work commit="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011/commit/6514c65f1dab1bbdf697ae4e56c7bca511a12191">
+		<work commit="6514c65f1dab1bbdf697ae4e56c7bca511a12191">
 			<description>
 				Wrote some code to fill up the repository (Learnt C#)
 				Made an LED flash.
