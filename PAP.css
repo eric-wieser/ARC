@@ -44,7 +44,7 @@ h1 {
 
 .content {
 	overflow: hidden;
-	box-shadow: 0px 1px 2px gray, inset 0px 1px 2px gray;
+	box-shadow: 0px 1px 2px gray;
 	background: white;
 	behavior: url(PIE.htc);
     border-radius: 5px;
