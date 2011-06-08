@@ -79,6 +79,8 @@
 	
 	<xsl:template match="entry" mode="single">
 		<xsl:variable name="d" select="substring(date,1,2)" />
+		<xsl:variable name="m" select="substring(date,4,2)" />
+		<xsl:variable name="y" select="substring(date,7,4)" />
 		<div class="entry" id="{$y}-{$m}-{$d}">
 			<div class="date"><xsl:value-of select="$d"/></div>
 			<ul class="tags"><xsl:apply-templates select="@tags" /></ul>
