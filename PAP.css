@@ -45,8 +45,10 @@ h1 {
 }
 
 .tags li {
-	height: 30px;
-	margin-bottom: 5px;
+	height: 40px;
+	width: 40px;
+	margin: -5px;
+	margin-bottom: 0;
 	color: gray;
 	background: transparent no-repeat 50% 50%;
 	text-indent: -9999px;
