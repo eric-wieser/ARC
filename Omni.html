@@ -1,0 +1,111 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>OmniRobot simulation - jsFiddle demo by Eric</title> 
+		<script type='text/javascript' src="https://github.com/DmitryBaranovskiy/raphael/raw/2.0/raphael-min.js"></script> 
+		<script type='text/javascript' src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+
+		<style type='text/css'> </style> 
+	  
+		<script type='text/javascript'> 
+		//<![CDATA[ 
+		window.onload = function() {
+			var paper = Raphael("raphael", 500, 500);
+			var twoPi = 2 * Math.PI;
+			 
+			var Wheel = function(transform) {
+				this.radius = 30.4;
+				this.subRadius = 6;
+				this.transform = transform;
+				paper.rect(-this.radius, -4, 2 * this.radius, 8).attr({
+					transform: this.transform,
+					fill: '#808080',
+					stroke: 'none'
+				});
+				var driveVector = paper.path('M0 0L20 0').attr({
+					transform: transform,
+					stroke: 'red',
+					'stroke-width': 3
+				});
+				var rollVector = paper.path('M0 0L0 20').attr({
+					transform: transform,
+					stroke: 'yellow',
+					'stroke-width': 3
+				});
+				var subWheels = [];
+				for (var i = 0; i < 32; i++) {
+					var theta = Math.PI * i / 16;
+					subWheels.push({
+						angle: theta,
+						elem: paper.ellipse(-this.radius, 0, this.subRadius, this.subRadius).attr({
+							fill: '#c0c0c0',
+							stroke: '#808080'
+						})
+					});
+				}
+				this.speed = [0, 0];
+				this.nextFrame = function(dt) {
+					subWheels = subWheels.sort(function(a, b) {
+						var d = Math.sin(a.angle) - Math.sin(b.angle);
+						return d > 0 ? 1 : d < 0 ? -1 : 0;
+					});
+					for (var i = 0; i < subWheels.length; i++) {
+						var w = subWheels[i];
+						w.angle += this.speed[0]*twoPi*dt + twoPi;
+						w.angle %= 2 * Math.PI;
+						if (w.angle <= Math.PI) w.elem.show().insertBefore(driveVector).attr('transform', this.transform + 's' + Math.cos(w.angle) + ',1,0,0');
+						else w.elem.hide();
+					}
+					driveVector.attr('path', 'M0 0L'+this.speed[0]*50+' 0');
+					rollVector.attr('path', 'M0 0L0 '+this.speed[1]*50);
+				}
+			}
+			 
+			var robotTranform = 't200,200s1.5,1.5,0,0';
+			 
+			paper.circle(0, 0, 105).attr({
+				transform: robotTranform,
+				fill: '#404040'
+			});
+			var wheels = [
+				{angle: 0, w: new Wheel(robotTranform + 't0,90')},
+				{angle: 120, w: new Wheel(robotTranform + 'r120,0,0t0,90')},
+				{angle: 240, w: new Wheel(robotTranform + 'r240,0,0t0,90')}
+			];
+			 
+			setInterval(function() {
+				for (var i = 0; i < wheels.length; i++)
+				wheels[i].w.nextFrame(0.05);
+			}, 50);
+			 
+			var motion = paper.path('M0 0L20 0').attr({
+				transform: robotTranform,
+				stroke: 'blue',
+				'stroke-width': 3
+			});
+			 
+			function setSpeed(heading, speed) {
+				for (var i = 0; i < wheels.length; i++) {
+					var angle = wheels[i].angle - heading;
+					angle = angle/180 * Math.PI;
+					wheels[i].w.speed = [speed * Math.sin(angle), speed*Math.cos(angle)];
+				}
+				heading = heading/180 * Math.PI;
+				motion.attr('path', 'M0 0L'+speed*Math.sin(-heading)*50 + ' ' + speed*Math.cos(-heading)*50);
+			}
+						   
+			 
+			var heading = 0;
+			setInterval(function() {			  
+				setSpeed(heading++, 1.5);
+			}, 100);
+		}
+		//]]> 
+		</script> 
+	</head> 
+	<body>
+		<div id="raphael">
+		
+		</div>
+	</body>
+</html>
