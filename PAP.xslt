@@ -113,7 +113,7 @@
 		<xsl:variable name="current" select="." />
 		<xsl:for-each select="$config/cfg:tags/cfg:tag">
 			<xsl:if test="contains($current, @name)">
-				<li class="{@name}"><xsl:value-of select="@short" /></li>
+				<li class="{@name}" title="{@name}"><xsl:value-of select="@name" /></li>
 			</xsl:if>
 		</xsl:for-each>
 	</xsl:template>
