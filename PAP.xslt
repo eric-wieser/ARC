@@ -65,7 +65,7 @@
 		<xsl:variable name="y" select="substring(date,7,4)" />
 		<xsl:variable name="ym" select="concat($y, $m)" />
 		<xsl:variable name="label" select="$config/cfg:months/cfg:month[@id = $m]/@name" />
-		<div class="month">
+		<div class="month" id="{$y}-{$m}">
 			<span class="name">
 				<xsl:value-of select="$label"/>
 				<xsl:text> </xsl:text>
@@ -78,8 +78,9 @@
 	</xsl:template>
 	
 	<xsl:template match="entry" mode="single">
-		<div class="entry">
-			<div class="date"><xsl:value-of select="substring(date,1,2)"/></div>
+		<xsl:variable name="d" select="substring(date,1,2)" />
+		<div class="entry" id="{$y}-{$m}-{$d}">
+			<div class="date"><xsl:value-of select="$d"/></div>
 			<ul class="tags"><xsl:apply-templates select="@tags" /></ul>
 			<div class="content">
 				<dl>
