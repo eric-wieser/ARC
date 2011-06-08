@@ -5,11 +5,22 @@
 		<script type='text/javascript' src="https://github.com/DmitryBaranovskiy/raphael/raw/2.0/raphael-min.js"></script> 
 		<script type='text/javascript' src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
 
-		<style type='text/css'> </style> 
+		<style type='text/css'>
+		.controls {
+			overflow: hidden;
+		}
+		.controls label {
+			display: block;
+		}
+		#raphael {
+			float: left;
+		}
+		
+		</style> 
 	  
 		<script type='text/javascript'> 
 		//<![CDATA[ 
-		window.onload = function() {
+		$(function() {
 			var paper = Raphael("raphael", 500, 500);
 			var twoPi = 2 * Math.PI;
 			 
@@ -22,12 +33,12 @@
 					fill: '#808080',
 					stroke: 'none'
 				});
-				var driveVector = paper.path('M0 0L20 0').attr({
+				this.driveVector = paper.path('M0 0L20 0').attr({
 					transform: transform,
 					stroke: 'red',
 					'stroke-width': 3
 				});
-				var rollVector = paper.path('M0 0L0 20').attr({
+				this.rollVector = paper.path('M0 0L0 20').attr({
 					transform: transform,
 					stroke: 'yellow',
 					'stroke-width': 3
@@ -53,11 +64,11 @@
 						var w = subWheels[i];
 						w.angle += this.speed[0]*twoPi*dt + twoPi;
 						w.angle %= 2 * Math.PI;
-						if (w.angle <= Math.PI) w.elem.show().insertBefore(driveVector).attr('transform', this.transform + 's' + Math.cos(w.angle) + ',1,0,0');
+						if (w.angle <= Math.PI) w.elem.show().insertBefore(this.driveVector).attr('transform', this.transform + 's' + Math.cos(w.angle) + ',1,0,0');
 						else w.elem.hide();
 					}
-					driveVector.attr('path', 'M0 0L'+this.speed[0]*50+' 0');
-					rollVector.attr('path', 'M0 0L0 '+this.speed[1]*50);
+					this.driveVector.attr('path', 'M0 0L'+this.speed[0]*50+' 0');
+					this.rollVector.attr('path', 'M0 0L0 '+this.speed[1]*50);
 				}
 			}
 			 
@@ -99,13 +110,44 @@
 			setInterval(function() {			  
 				setSpeed(heading++, 1.5);
 			}, 100);
-		}
+			
+			$('#drive-vectors').click(function() {
+				var checked = $(this).prop('checked');
+				if(checked)
+					for(var i = 0; i < wheels.length; i++)
+						wheels[i].w.driveVector.show();
+				else
+					for(var i = 0; i < wheels.length; i++)
+						wheels[i].w.driveVector.hide();
+			});
+			$('#roll-vectors').click(function() {
+				var checked = $(this).prop('checked');
+				if(checked)
+					for(var i = 0; i < wheels.length; i++)
+						wheels[i].w.rollVector.show();
+				else
+					for(var i = 0; i < wheels.length; i++)
+						wheels[i].w.rollVector.hide();
+			});
+			$('#resultant-vectors').click(function() {
+				var checked = $(this).prop('checked');
+				if(checked)
+					motion.show();
+				else
+					motion.hide();
+			});
+		})
 		//]]> 
 		</script> 
 	</head> 
 	<body>
 		<div id="raphael">
 		
+		</div>
+		<div class="controls">
+			<label><input id="drive-vectors" type="checkbox" checked />Show drive vectors</label>
+			<label><input id="roll-vectors" type="checkbox" checked />Show roll vectors</label>
+			<label><input id="resultant-vectors" type="checkbox" checked />Show resultant vectors</label>
 		</div>
 	</body>
 </html>
