@@ -25,14 +25,14 @@
 			</purpose>
 		</work>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>14/01/2011</date>
 		<work>
 			<description>Investigation into the physics of motors. Differential equations linking stall torque, free-running-RPM, mass, and robot configuration to velocity and displacement after a certain time.</description>
 			<purpose>Help me choose an appropiately spec-ed motor for use in the robot</purpose>
 		</work>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>21/01/2011</date>
 		<work>
 			<description>Starting writing some code for the Holonomic drive system of the robot. Also, tried and failed to set up a Git repository.</description>
@@ -44,7 +44,7 @@
 		</work>
 		<todo>Stop stalling and buy a netduino</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>28/01/2011</date>
 		<work>
 			<description>Had a look at the rotacaster website, and sent an email to the owners</description>
@@ -52,7 +52,7 @@
 		</work>
 		<todo>Investigate the cost of custom wheels</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>29/01/2011</date>
 		<work>
 			<description>Read a book on kalman filters</description>
@@ -60,7 +60,7 @@
 		</work>
 		<todo>Do some more research into their application in inertial navigation systems - speak to the Robotics team mentor</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>01/02/2011</date>
 		<work>
 			<description>Experimentation with an accelerometer</description>
@@ -68,7 +68,7 @@
 		</work>
 		<todo>Consider other methods of localization, such as ultrasonic sensors and optical mouse encoders</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>04/02/2011</date>
 		<work>
 			<description>Looking up cables. It appears companies cannot design breakout boards in a way such that anything can connect to them</description>
@@ -76,7 +76,7 @@
 		</work>
 		<todo>Look up custom made PCB solutions</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>04/02/2011</date>
 		<work>
 			<description>More omniwheels</description>
@@ -97,22 +97,22 @@
 			<purpose>Can't build the robot without the parts</purpose>
 		</work>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>22/03/2011</date>
 		<work>
 			<description>Downloaded Eagle, and started designing a custom PCB, to check viability</description>
 			<purpose>Will let me evaluate the cost of a custom made PCB. Apparently http://www.newburyelectronics.co.uk does a good deal</purpose>
 		</work>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>23/03/2011</date>
 		<work>
-			<description>Changed design, in order to accommodate beefier motors</description>
+			<description>Changed PCB design, in order to accommodate beefier motors</description>
 			<purpose>Lets me build a faster robot</purpose>
 		</work>
 		<todo>Check current calculations in order to choose a suitable battery size</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>25/03/2011</date>
 		<work>
 			<description>More PCB stuff</description>
@@ -133,7 +133,7 @@
 			<purpose>The robot has a weight limit. We want to make sure that we do not go over this! By listing individual weights, it makes it possible to see which parts are weighing the robot down</purpose>
 		</work>
 	</entry>
-	<entry>
+	<entry tags="software, electronics">
 		<date>13/04/2011</date>
 		<work>
 			<description>Found out about yet another controller, the FEZ Panda II, which was released a few weeks ago. Much higher spec'd than the Netduino. Looks like procrastination paid off!</description>
@@ -141,7 +141,7 @@
 		</work>
 		<todo>Narrow down the choices.</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>16/04/2011</date>
 		<work>
 			<description>Started seriously thinking about custom made wheels. Ordered a bunch of washers and oversized key rings off the internet. As you do.</description>
@@ -152,7 +152,7 @@
 		</work>
 		<todo>CAD inside of wheel</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>17/04/2011</date>
 		<work>
 			<description>Teammate recieves split rings and washers. Measures them.</description>
@@ -169,7 +169,7 @@
 			Get a quote for CAM of the wheels
 		</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>19/04/2011</date>
 		<work>
 			<description>Got a quote for laser-cut aluminum from Microkerf.</description>
@@ -177,7 +177,7 @@
 		</work>
 		<todo>Combine other parts with the order to save set-up costs</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>24/04/2011</date>
 		<work>
 			<description>Made teammate use calipers. CAD wheel. Again.</description>
@@ -185,7 +185,7 @@
 		</work>
 		<todo>Get another quote</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>04/05/2011</date>
 		<work>
 			<description>Parts arrive at teammates house.</description>
@@ -203,7 +203,7 @@
 		</work>
 		<todo>Learn C# so that I can start programming the chip</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>05/05/2011</date>
 		<work>
 			<description>
@@ -222,7 +222,7 @@
 		</work>
 		<todo>Write some code to fill up the repository!</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>06/05/2011</date>
 		<work commit="6514c65f1dab1bbdf697ae4e56c7bca511a12191">
 			<description>
@@ -235,7 +235,7 @@
 		</work>
 		<todo>Find a component that isn't an LED, and experiment with it.</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics, mechanics, software">
 		<date>07/05/2011</date>
 		<work>
 			<description>Met up with teammate, and played with all the other cool "toys" that had been delivered. Discussed batteries, and mutilated some 6AA battery cases to accommodate the Lego Mindstorms NXT rechargeable batteries we had.</description>
@@ -247,7 +247,7 @@
 		</work>
 		<todo>Plug the IR sensor into an oscilloscope, and examine the trace as the ball is moved.</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics, mechanics">
 		<date>12/05/2011</date>
 		<work>
 			<description>Took the IR sensor into the electronics lab, and connected it up to a picoscope to examine it's behaviour</description>
@@ -257,7 +257,7 @@
 		</work>
 		<todo>Continue to experiment with shielding</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>15/05/2011</date>
 		<work commit="7d59bb6faed79f0a1701">
 			<description>
@@ -272,7 +272,7 @@
 		</work>
 		<todo>Consult an expert to help with the shielding</todo>
 	</entry>
-	<entry>
+	<entry tags="mechanics">
 		<date>29/05/2011</date>
 		<work>
 			<description>
@@ -286,7 +286,7 @@
 			Start thinking about motor drivers
 		</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>01/06/2011</date>
 		<work>
 			<description>
@@ -300,7 +300,7 @@
 			Draw up and finalize the design, so that it can be assembled.
 		</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>02/06/2011</date>
 		<work>
 			<description>
@@ -314,7 +314,7 @@
 			Drill holes in the stripboard, and neaten off the edges.
 		</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>03/06/2011</date>
 		<work>
 			<description>
@@ -328,7 +328,7 @@
 			Test the assembled motor driver board, and if it works, solder the other 5.
 		</todo>
 	</entry>
-	<entry>
+	<entry tags="electronics">
 		<date>06/06/2011</date>
 		<work>
 			<description>
@@ -350,7 +350,7 @@
 			Continue to draft the power board design
 		</todo>
 	</entry>
-	<entry>
+	<entry tags="software">
 		<date>07/06/2011</date>
 		<work commit="1a2654f5b0e6769f678d">
 			<description>
@@ -362,6 +362,17 @@
 		</work>
 		<todo>
 			Finalize the power board design, so that too can be built and tested
+		</todo>
+	</entry>
+	<entry tags="electronics">
+		<date>08/06/2011</date>
+		<work>
+			<description>
+				Assembled two further motor drivers, giving a full robot's worth
+			</description>
+		</work>
+		<todo>
+			Test the new controllers, to check that they also work. If so, attach them to a foamex chasis for testing purposes
 		</todo>
 	</entry>
 </pap>
