@@ -57,7 +57,7 @@ Matrix.prototype = {
 	toString: function() {
 		return "Matrix: [[" + a + "," + b + "],[" + c + "," + d + "]]";
 	},
-	equals: function(that)
+	equals: function(that) {
 		return that != null && this.a == that.a && this.b == that.b && this.c == that.c && this.d == that.d;
 	}
 }
