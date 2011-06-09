@@ -1,4 +1,4 @@
-var AffineTransform = function(v, m) {
+function AffineTransform(v, m) {
 	this.matrix = m;
 	this.translation = v;
 }

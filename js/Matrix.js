@@ -1,4 +1,4 @@
-var Matrix = function(a, b, c, d) {
+function Matrix(a, b, c, d) {
 	this.a = a;
 	this.b = b;
 	this.c = c;
@@ -54,7 +54,7 @@ Matrix.prototype = {
 		else
 			return new Matrix(this.a * that, this.b * that, this.c * that, this.d * that);
 	},
-	toString: function()
+	toString: function() {
 		return "Matrix: [[" + a + "," + b + "],[" + c + "," + d + "]]";
 	},
 	equals: function(that)
