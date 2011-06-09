@@ -30,7 +30,7 @@ Vector.prototype = {
 	distanceTo: function(that) {
 		return this.subtract(that).magnitude();
 	},
-	lerp = function(that, t) {
+	lerp: function(that, t) {
 		return that.times(t).plus(this.times(1-t));
 	},
 	toString: function() {

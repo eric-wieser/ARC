@@ -26,10 +26,10 @@ Matrix.fromPrincipleAxis = function(axis) {
 }
 
 Matrix.prototype = {
-	determinant = function() {
+	determinant: function() {
 		return this.a * this.d - this.b * this.c;
 	},
-	inverse = function() {
+	inverse: function() {
 		if (this.inverseMatrix == null) {
 			this.inverseMatrix = new Matrix(d, -b, -c, a) / this.determinant();
 			this.inverseMatrix.inverseMatrix = this;
@@ -37,10 +37,10 @@ Matrix.prototype = {
 		return this.inverseMatrix;
 	},
 
-	divideBy = function(k) {
+	divideBy: function(k) {
 		return new Matrix(this.a / k, this.b / k, this.c / k, this.d / k);
 	}
-	times = function(that) {
+	times: function(that) {
 		if(that instanceof Matrix)
 			return new Matrix(
 				this.a * that.a + this.b * that.c,
@@ -54,10 +54,10 @@ Matrix.prototype = {
 		else
 			return new Matrix(this.a * that, this.b * that, this.c * that, this.d * that);
 	},
-	toString = function()
+	toString: function()
 		return "Matrix: [[" + a + "," + b + "],[" + c + "," + d + "]]";
 	},
-	equals = function(that)
+	equals: function(that)
 		return that != null && this.a == that.a && this.b == that.b && this.c == that.c && this.d == that.d;
 	}
 }
