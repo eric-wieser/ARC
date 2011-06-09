@@ -23,6 +23,6 @@ AffineTransform.prototype = {
 		var m = this.matrix, v = this.translation;
 		return 'M'+m.a + ' ' + m.c + ' ' + m.b + ' ' + m.d + ' ' + v.x + ' ' + v.y
 	}
-}
+};
 
 AffineTransform.identity = new AffineTransform();

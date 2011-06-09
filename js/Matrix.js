@@ -60,4 +60,4 @@ Matrix.prototype = {
 	equals: function(that) {
 		return that != null && this.a == that.a && this.b == that.b && this.c == that.c && this.d == that.d;
 	}
-}
+};

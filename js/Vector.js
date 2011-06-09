@@ -39,4 +39,8 @@ Vector.prototype = {
 	clone: function() {
 		return new Vector(x, y);
 	}
-}
+};
+
+Vector.zero = new Vector(0,0);
+Vector.i = new Vector(1,0);
+Vector.j = new Vector(0,1);
