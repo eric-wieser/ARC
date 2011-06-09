@@ -39,7 +39,7 @@ Matrix.prototype = {
 
 	divideBy: function(k) {
 		return new Matrix(this.a / k, this.b / k, this.c / k, this.d / k);
-	}
+	},
 	times: function(that) {
 		if(that instanceof Matrix)
 			return new Matrix(

@@ -3,7 +3,7 @@ var AffineTransform = function(v, m) {
 	this.translation = v;
 }
 
-AffineTrasnform.prototype = {
+AffineTransform.prototype = {
 	toWorldSpace: function(objectVector) {
 		return this.matrix.times(objectVector).plus(this.translation);
 	},
@@ -12,10 +12,10 @@ AffineTrasnform.prototype = {
 	},
 	inverse: function() {
 		var inv = this.matrix.inverse();
-		return new AffineTrasnform(inv.times(this.translation.minus()), inv);
+		return new AffineTransform(inv.times(this.translation.minus()), inv);
 	},
 	combine: function(that) {
-		return new AffineTrasnform(this.toWorldSpace(that.translation), this.matrix.times(that.matrix);
+		return new AffineTransform(this.toWorldSpace(that.translation), this.matrix.times(that.matrix));
 	},
 	toSVGTransformString: function() {
 		var m = this.matrix, v = this.translation;
@@ -23,4 +23,4 @@ AffineTrasnform.prototype = {
 	}
 }
 
-AffineTranform.identity = new AffineTransform(Vector.zero, Matrix.identity);
+AffineTransform.identity = new AffineTransform(Vector.zero, Matrix.identity);
