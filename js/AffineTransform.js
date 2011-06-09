@@ -1,6 +1,8 @@
 function AffineTransform(v, m) {
-	this.matrix = m;
-	this.translation = v;
+	if(v instanceof Matrix)
+		m = v, v = null;
+	this.matrix = m || Matrix.identity;
+	this.translation = v || Vector.zero;
 }
 
 AffineTransform.prototype = {
@@ -23,4 +25,4 @@ AffineTransform.prototype = {
 	}
 }
 
-AffineTransform.identity = new AffineTransform(Vector.zero, Matrix.identity);
+AffineTransform.identity = new AffineTransform();
