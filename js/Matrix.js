@@ -4,10 +4,6 @@ function Matrix(a, b, c, d) {
 	this.c = c;
 	this.d = d;
 }
-Matrix.identity = new Matrix(1, 0, 0, 1);
-Matrix.rotate90 = new Matrix(0, 1, -1, 0);
-Matrix.rotate180 = new Matrix(-1, 0, 0, -1)
-Matrix.rotate270 = new Matrix(0, -1, 1, 0);
 
 Matrix.fromRotation = function(angle) {
 	var sinA = Math.sin(angle);
@@ -61,3 +57,8 @@ Matrix.prototype = {
 		return that != null && this.a == that.a && this.b == that.b && this.c == that.c && this.d == that.d;
 	}
 };
+
+Matrix.identity = new Matrix(1, 0, 0, 1);
+Matrix.rotate90 = new Matrix(0, 1, -1, 0);
+Matrix.rotate180 = new Matrix(-1, 0, 0, -1)
+Matrix.rotate270 = new Matrix(0, -1, 1, 0);
