@@ -2,9 +2,17 @@ function Vector(x, y) {
 	this.x = x;
 	this.y = y;
 }
+Vector.fromPolarCoords = function(r, theta) {
+	if(!theta)
+		theta = r, r = 1;
+	return new Vector(r*Math.cos(theta), r*Math.sin(theta));
+}
 Vector.prototype = {
 	magnitude: function() {
 		return Math.sqrt(this.dot(this));
+	},
+	angle: function() {
+		return Math.atan2(this.x, this.y);
 	},
 	unit: function() {
 		return this.scale(1 / this.magnitude());
@@ -19,7 +27,10 @@ Vector.prototype = {
 			return new Vector(this.x - that.x, this.y - that.y);
 	},
 	times: function(factor) {
-		return new Vector(this.x * factor, this.y * factor);
+		if(factor instanceof Vector)
+			return new Vector(this.x * factor.x, this.y * factor.y);
+		else
+			return new Vector(this.x * factor, this.y * factor);
 	},
 	over: function(factor) {
 		return new Vector(this.x / factor, this.y / factor);
@@ -32,6 +43,9 @@ Vector.prototype = {
 	},
 	lerp: function(that, t) {
 		return that.times(t).plus(this.times(1-t));
+	},
+	toDiagonalMatrix: function() {
+		return new Matrix(this.x, 0, 0, this.y);
 	},
 	toString: function() {
 		return '(' + this.x + ',' + this.y + ')';

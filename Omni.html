@@ -26,29 +26,45 @@
 		$(function() {
 			var paper = Raphael("raphael", 500, 500);
 			var twoPi = 2 * Math.PI;
+			var center = new Vector(250,250);
+			
+			paper.customAttributes.affineTransform = function(t) {
+				return {transform: t.toSVGTransformString()};
+			}
+			paper.customAttributes.vector = function(v) {
+				return {path: 'M0 0L'+v.x+' '+v.y};
+			}
 			 
 			var Wheel = function(transform) {
 				this.radius = 30.4;
 				this.subRadius = 6;
 				this.transform = transform;
 				paper.rect(-this.radius, -4, 2 * this.radius, 8).attr({
-					transform: this.transform,
+					affineTransform: this.transform,
 					fill: '#808080',
 					stroke: 'none'
 				});
 				this.driveVector = paper.path('M0 0L20 0').attr({
-					transform: transform,
+					affineTransform: transform,
 					stroke: 'red',
-					'stroke-width': 3
+					'stroke-width': 1,
+					'stroke-linecap': 'round'
 				});
 				this.rollVector = paper.path('M0 0L0 20').attr({
-					transform: transform,
+					affineTransform: transform,
 					stroke: 'yellow',
-					'stroke-width': 3
+					'stroke-width': 1,
+					'stroke-linecap': 'round'
+				});
+				this.resultantVector = paper.path('M0 0L0 20').attr({
+					affineTransform: transform,
+					stroke: 'blue',
+					'stroke-width': 1,
+					'stroke-linecap': 'round'
 				});
 				var subWheels = [];
 				for (var i = 0; i < 32; i++) {
-					var theta = Math.PI * i / 16;
+					var theta = twoPi * i / 32;
 					subWheels.push({
 						angle: theta,
 						elem: paper.ellipse(-this.radius, 0, this.subRadius, this.subRadius).attr({
@@ -57,7 +73,8 @@
 						})
 					});
 				}
-				this.speed = [0, 0];
+				var circumference = twoPi * this.radius;
+				this.speed = Vector.zero;
 				this.nextFrame = function(dt) {
 					subWheels = subWheels.sort(function(a, b) {
 						var d = Math.sin(a.angle) - Math.sin(b.angle);
@@ -65,80 +82,118 @@
 					});
 					for (var i = 0; i < subWheels.length; i++) {
 						var w = subWheels[i];
-						w.angle += this.speed[0]*twoPi*dt + twoPi;
-						w.angle %= 2 * Math.PI;
-						if (w.angle <= Math.PI) w.elem.show().insertBefore(this.driveVector).attr('transform', this.transform + 's' + Math.cos(w.angle) + ',1,0,0');
+						w.angle += this.speed.x*dt/circumference + twoPi;
+						w.angle %= twoPi;
+						var transform = this.transform.toSVGTransformString() + 's' + Math.cos(w.angle) + ',1,0,0';
+						if (w.angle <= Math.PI) w.elem.show().insertBefore(this.driveVector).attr('transform', transform);
 						else w.elem.hide();
 					}
-					this.driveVector.attr('path', 'M0 0L'+this.speed[0]*50+' 0');
-					this.rollVector.attr('path', 'M0 0L0 '+this.speed[1]*50);
+					this.driveVector.attr('vector', this.speed.times(Vector.i));
+					this.rollVector.attr('vector', this.speed.times(Vector.j));
+					this.resultantVector.attr('vector', this.speed);
 				}
 			}
 			 
-			var robotTranform = 't250,250s1.75,1.75,0,0';
+			var robotTransform = new AffineTransform(center).scale(1.75);//'t250,250s1.75,1.75,0,0';
 			 
+			var wheelOffset = new AffineTransform(new Vector(0,90));
+			var wheelATransform = new AffineTransform().rotate(Math.pi*2/3).combine(wheelOffset);
+			
 			paper.circle(0, 0, 105).attr({
-				transform: robotTranform,
+				affineTransform: robotTransform,
 				fill: '#404040'
 			});
+			
+			//robotTransform = robotTransform.toSVGTransformString();
+			
 			var wheels = [
-				{angle: 0, w: new Wheel(robotTranform + 't0,90')},
-				{angle: 120, w: new Wheel(robotTranform + 'r120,0,0t0,90')},
-				{angle: 240, w: new Wheel(robotTranform + 'r240,0,0t0,90')}
+				new Wheel(robotTransform.combine(wheelOffset)),
+				new Wheel(robotTransform.rotate(-twoPi/3).combine(wheelOffset)),
+				new Wheel(robotTransform.rotate(twoPi/3).combine(wheelOffset))
 			];
 			 
-			setInterval(function() {
+			function update() {
+				var time = +new Date();
+				var deltaTime = (time - this.lastUpdate)/1000;
+				this.lastUpdate = time;
+				if(deltaTime != deltaTime) return;
 				for (var i = 0; i < wheels.length; i++)
-				wheels[i].w.nextFrame(0.05);
-			}, 50);
+					wheels[i].nextFrame(deltaTime);
+			}
+			update.lastUpdate = +new Date();
+			setInterval(update, 50);
 			 
 			var motion = paper.path('M0 0L20 0').attr({
-				transform: robotTranform,
+				affineTransform: robotTransform,
 				stroke: 'blue',
-				'stroke-width': 3
+				'stroke-width': 1,
+				'stroke-linecap': 'round'
 			});
 			 
-			function setSpeed(heading, speed) {
-				for (var i = 0; i < wheels.length; i++) {
-					var angle = wheels[i].angle - heading;
-					angle = angle/180 * Math.PI;
-					wheels[i].w.speed = [speed * Math.sin(angle), speed*Math.cos(angle)];
-				}
-				heading = heading/180 * Math.PI;
-				motion.attr('path', 'M0 0L'+speed*Math.sin(-heading)*50 + ' ' + speed*Math.cos(-heading)*50);
+			function setSpeed(v) {
+				//var v = Vector.fromPolarCoords(speed, heading/180 * Math.PI);
+				motion.attr('path', 'M0 0L' + v.x + ' ' + v.y);
+				
+				v = robotTransform.vectorToWorldSpace(v);
+				
+				for (var i = 0; i < wheels.length; i++)
+					wheels[i].speed = wheels[i].transform.vectorToObjectSpace(v);
 			}
 						   
-			 
+			 /*
 			var heading = 0;
 			setInterval(function() {			  
 				setSpeed(heading++, 1.5);
-			}, 100);
+			}, 100);*/
 			
-			$('#drive-vectors').click(function() {
-				var checked = $(this).prop('checked');
-				if(checked)
-					for(var i = 0; i < wheels.length; i++)
-						wheels[i].w.driveVector.show();
-				else
-					for(var i = 0; i < wheels.length; i++)
-						wheels[i].w.driveVector.hide();
+			function updateMouse(pos) {
+				var robotPos = robotTransform.toObjectSpace(pos);
+				setSpeed(robotPos);
+			}
+			
+			var mouseDown = false;
+			$('#raphael').mousemove(function(e) {
+				if(mouseDown) {
+					var o = $(this).offset();
+					var mousePos = new Vector(e.pageX - o.left, e.pageY - o.top);
+					updateMouse(mousePos);
+				}
+			}).mousedown(function(e) {
+				mouseDown = true;
+				$(this).css('cursor','move');
+				var o = $(this).offset();
+				var mousePos = new Vector(e.pageX - o.left, e.pageY - o.top);
+				updateMouse(mousePos);
+			}).mouseup(function(e) {
+				mouseDown = false;
+				$(this).css('cursor','auto');
+			}).bind('selectstart', function() {
+				return false;
 			});
-			$('#roll-vectors').click(function() {
+	
+			setSpeed(Vector.i.times(50));
+			var vectors = {
+				drive: paper.set(),
+				roll: paper.set(),
+				result: paper.set(),
+				robot: motion
+			}
+			for(var i = 0; i < wheels.length; i++) {
+				vectors.drive.push(wheels[i].driveVector);
+				vectors.roll.push(wheels[i].rollVector);
+				vectors.result.push(wheels[i].resultantVector);
+			}
+			
+			function toggle() {
 				var checked = $(this).prop('checked');
+				var toToggle = $(this).data('toggle');
 				if(checked)
-					for(var i = 0; i < wheels.length; i++)
-						wheels[i].w.rollVector.show();
+					vectors[toToggle].show();
 				else
-					for(var i = 0; i < wheels.length; i++)
-						wheels[i].w.rollVector.hide();
-			});
-			$('#resultant-vectors').click(function() {
-				var checked = $(this).prop('checked');
-				if(checked)
-					motion.show();
-				else
-					motion.hide();
-			});
+					vectors[toToggle].hide();
+			}
+			
+			$('.toggler').click(toggle).each(toggle);
 		})
 		//]]> 
 		</script> 
@@ -148,9 +203,10 @@
 		
 		</div>
 		<div class="controls">
-			<label><input id="drive-vectors" type="checkbox" checked />Show drive vectors</label>
-			<label><input id="roll-vectors" type="checkbox" checked />Show roll vectors</label>
-			<label><input id="resultant-vectors" type="checkbox" checked />Show resultant vectors</label>
+			<label><input class="toggler" data-toggle="drive" type="checkbox" checked />Show drive vectors</label>
+			<label><input class="toggler" data-toggle="roll" type="checkbox"  />Show roll vectors</label>
+			<label><input class="toggler" data-toggle="result" type="checkbox"  />Show resultant vectors</label>
+			<label><input class="toggler" data-toggle="robot" type="checkbox" checked />Show robot resultant vector</label>
 		</div>
 	</body>
 </html>

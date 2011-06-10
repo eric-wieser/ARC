@@ -27,7 +27,7 @@ Matrix.prototype = {
 	},
 	inverse: function() {
 		if (this.inverseMatrix == null) {
-			this.inverseMatrix = new Matrix(d, -b, -c, a) / this.determinant();
+			this.inverseMatrix = new Matrix(this.d, -this.b, -this.c, this.a).divideBy(this.determinant());
 			this.inverseMatrix.inverseMatrix = this;
 		}
 		return this.inverseMatrix;
@@ -51,7 +51,8 @@ Matrix.prototype = {
 			return new Matrix(this.a * that, this.b * that, this.c * that, this.d * that);
 	},
 	toString: function() {
-		return "Matrix: [[" + a + "," + b + "],[" + c + "," + d + "]]";
+		alert("...");
+		return "Matrix: [[" + this.a + "," + this.b + "],[" + this.c + "," + this.d + "]]";
 	},
 	equals: function(that) {
 		return that != null && this.a == that.a && this.b == that.b && this.c == that.c && this.d == that.d;
