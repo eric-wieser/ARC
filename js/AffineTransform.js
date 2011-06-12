@@ -9,6 +9,9 @@ AffineTransform.prototype = {
 	clone: function() {
 		return new AffineTransform(this.translation, this.matrix);
 	},
+	evaluate: function() {
+		return this;
+	}
 	toWorldSpace: function(objectVector) {
 		return this.matrix.times(objectVector).plus(this.translation);
 	},

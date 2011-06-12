@@ -44,6 +44,9 @@ Vector.prototype = {
 	lerp: function(that, t) {
 		return that.times(t).plus(this.times(1-t));
 	},
+	perp: function() {
+		return new Vector(-this.y, this.x);
+	},
 	toDiagonalMatrix: function() {
 		return new Matrix(this.x, 0, 0, this.y);
 	},

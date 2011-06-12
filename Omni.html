@@ -2,7 +2,7 @@
 <html> 
 	<head> 
 		<title>OmniRobot simulation - jsFiddle demo by Eric</title> 
-		<script type="text/javascript" src="https://github.com/DmitryBaranovskiy/raphael/raw/2.0/raphael-min.js"></script> 
+		<script type="text/javascript" src="js/raphael-min.js"></script> 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript" src="js/Vector.js"></script>
 		<script type="text/javascript" src="js/Matrix.js"></script>
@@ -14,11 +14,37 @@
 		}
 		.controls label {
 			display: block;
+			line-height: 20px;
+			position: relative;
+			padding-left: 20px;
 		}
 		#raphael {
 			float: left;
 		}
-		
+		.toggler input {
+			float: left;
+			margin-left: -200px;
+		}
+		.toggler span {
+			content: "";
+			width: 16px;
+			display: block;
+			height: 16px;
+			background: #404040;
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			border-radius: 5px;
+		}
+		.toggler.checked span {
+			width: 12px;
+			height: 12px;
+			border: 2px solid #404040;
+			background: gray;
+		}
+		svg * {
+			vector-effect: non-scaling-stroke;
+		}
 		</style> 
 	  
 		<script type='text/javascript'> 
@@ -69,7 +95,8 @@
 						angle: theta,
 						elem: paper.ellipse(-this.radius, 0, this.subRadius, this.subRadius).attr({
 							fill: '#c0c0c0',
-							stroke: '#808080'
+							stroke: '#a0a0a0',
+							'stroke-width': 2
 						})
 					});
 				}
@@ -84,9 +111,14 @@
 						var w = subWheels[i];
 						w.angle += this.speed.x*dt/circumference + twoPi;
 						w.angle %= twoPi;
-						var transform = this.transform.toSVGTransformString() + 's' + Math.cos(w.angle) + ',1,0,0';
-						if (w.angle <= Math.PI) w.elem.show().insertBefore(this.driveVector).attr('transform', transform);
-						else w.elem.hide();
+						var transform = this.transform.scale(new Vector(Math.cos(w.angle), 1));
+						if (w.angle <= Math.PI*1.1 || w.angle >= Math.PI*1.9)
+							w.elem
+								.show()
+								.insertBefore(this.driveVector)
+								.attr('affineTransform', transform);
+						else
+							w.elem.hide();
 					}
 					this.driveVector.attr('vector', this.speed.times(Vector.i));
 					this.rollVector.attr('vector', this.speed.times(Vector.j));
@@ -97,7 +129,6 @@
 			var robotTransform = new AffineTransform(center).scale(1.75);//'t250,250s1.75,1.75,0,0';
 			 
 			var wheelOffset = new AffineTransform(new Vector(0,90));
-			var wheelATransform = new AffineTransform().rotate(Math.pi*2/3).combine(wheelOffset);
 			
 			paper.circle(0, 0, 105).attr({
 				affineTransform: robotTransform,
@@ -185,12 +216,12 @@
 			}
 			
 			function toggle() {
-				var checked = $(this).prop('checked');
+				var checked = $(this).find('input').prop('checked');
 				var toToggle = $(this).data('toggle');
 				if(checked)
-					vectors[toToggle].show();
+					vectors[toToggle].show(), $(this).addClass('checked');
 				else
-					vectors[toToggle].hide();
+					vectors[toToggle].hide(), $(this).removeClass('checked');
 			}
 			
 			$('.toggler').click(toggle).each(toggle);
@@ -203,10 +234,10 @@
 		
 		</div>
 		<div class="controls">
-			<label><input class="toggler" data-toggle="drive" type="checkbox" checked />Show drive vectors</label>
-			<label><input class="toggler" data-toggle="roll" type="checkbox"  />Show roll vectors</label>
-			<label><input class="toggler" data-toggle="result" type="checkbox"  />Show resultant vectors</label>
-			<label><input class="toggler" data-toggle="robot" type="checkbox" checked />Show robot resultant vector</label>
+			<label class="toggler" data-toggle="drive"><input type="checkbox" checked /><span></span>Show drive vectors</label>
+			<label class="toggler" data-toggle="roll"><input type="checkbox"  /><span></span>Show roll vectors</label>
+			<label class="toggler" data-toggle="result"><input type="checkbox"  /><span></span>Show resultant vectors</label>
+			<label class="toggler" data-toggle="robot"><input type="checkbox" checked /><span></span>Show robot resultant vector</label>
 		</div>
 	</body>
 </html>
