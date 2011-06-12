@@ -375,4 +375,45 @@
 			Test the new controllers, to check that they also work. If so, attach them to a foamex chasis for testing purposes
 		</todo>
 	</entry>
+	<entry tags="software">
+		<date>10/06/2011</date>
+		<work>
+			<description>
+				Wrote code for the yet-to-be shipped HMC6352 compass sensor
+			</description>
+			<purpose>
+				Get ahead of the game, so when the chip arrives, it can be tested immediately
+			</purpose>
+		</work>
+		<todo>
+			Test the compass sensor, and fix the (almost certain) bugs in the code
+		</todo>
+	</entry>
+	<entry tags="electronics">
+		<date>11/06/2011</date>
+		<work>
+			<description>
+				Tested the compass, found bugs, and fixed bugs. Working properly. Few obscure bits of the datasheet might be worth implementing, but it's not too important
+			</description>
+			<purpose>
+				Saves me from having to use the LEGO HiTechnic compass sensor, which had a high chance of being blown up
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Teammate built a mock chassis out of foamex display board, and we screwed the motors on. Connected them up to the battery, and gauged speed. Moved very quickly.
+			</description>
+			<purpose>
+				Proves that the motors chosen are the right ones
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Attached motor drivers to the same setup used earlier, and found out that it didn't work. Two motor drivers got very hot, and weren't working. Spent quite some time trying to figure it out.
+			</description>
+		</work>
+		<todo>
+			Build another two motor drivers, and attempt to fix the broken ones
+		</todo>
+	</entry>
 </pap>
