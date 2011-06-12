@@ -11,7 +11,7 @@ AffineTransform.prototype = {
 	},
 	evaluate: function() {
 		return this;
-	}
+	},
 	toWorldSpace: function(objectVector) {
 		return this.matrix.times(objectVector).plus(this.translation);
 	},
