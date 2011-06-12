@@ -416,4 +416,36 @@
 			Build another two motor drivers, and attempt to fix the broken ones
 		</todo>
 	</entry>
+	<entry tags="electronics software">
+		<date>11/06/2011</date>
+		<work>
+			<description>
+				Found out that there was a short under the PCB spacers, and fixed it. Scraped off the copper so it couldn't happen again
+			</description>
+			<purpose>
+				No longer have to buy replacement L298 chips!
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Rigged the robot up as before, and tried driving. Found that motors had very low torque at partial speed, and tweaked the PWM frequency until it increased.
+			</description>
+			<purpose>
+				The robot need fine control of speed. If this can't be achieved purely by PWM, some kind of closed-loop control might be required
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Tested the holonomic drive code, and ironed out bugs
+			</description>
+		</work>
+		<work>
+			<description>
+				Came up with a final design for the power board
+			</description>
+		</work>
+		<todo>
+			Assemble the power boards, and order the chassis
+		</todo>
+	</entry>
 </pap>
