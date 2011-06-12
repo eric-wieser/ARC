@@ -377,7 +377,7 @@
 	</entry>
 	<entry tags="software">
 		<date>10/06/2011</date>
-		<work>
+		<work commit="fefbf211834f2efc7828">
 			<description>
 				Wrote code for the yet-to-be shipped HMC6352 compass sensor
 			</description>
@@ -389,9 +389,9 @@
 			Test the compass sensor, and fix the (almost certain) bugs in the code
 		</todo>
 	</entry>
-	<entry tags="electronics">
+	<entry tags="electronics software">
 		<date>11/06/2011</date>
-		<work>
+		<work commit="7077e06d503141c59ef8">
 			<description>
 				Tested the compass, found bugs, and fixed bugs. Working properly. Few obscure bits of the datasheet might be worth implementing, but it's not too important
 			</description>
@@ -407,7 +407,7 @@
 				Proves that the motors chosen are the right ones
 			</purpose>
 		</work>
-		<work>
+		<work commit="f49f207c5a5780a7492e">
 			<description>
 				Attached motor drivers to the same setup used earlier, and found out that it didn't work. Two motor drivers got very hot, and weren't working. Spent quite some time trying to figure it out.
 			</description>
@@ -426,7 +426,7 @@
 				No longer have to buy replacement L298 chips!
 			</purpose>
 		</work>
-		<work>
+		<work commit="e8435a9d2c1a1c4d0361">
 			<description>
 				Rigged the robot up as before, and tried driving. Found that motors had very low torque at partial speed, and tweaked the PWM frequency until it increased.
 			</description>

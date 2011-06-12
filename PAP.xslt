@@ -101,7 +101,7 @@
 	<xsl:template match="work">
 		<dt>
 			<xsl:if test="@commit">
-				<a class="github" href="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011/commit/{@commit}" title="View the code on github!">Commit</a>
+				<a class="github" href="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011/commit/{@commit}" title="View the code on github!" target="_blank">Commit</a>
 			</xsl:if>
 			<xsl:copy-of select="description/node()" />
 		</dt>
