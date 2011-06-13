@@ -1,0 +1,17 @@
+body {
+	font-family: 'Ubuntu', Arial;
+	background: #e0e0e0;
+	line-height: 20px;
+	font-weight: 300;
+}
+
+h2 {
+	font-family: 'Terminal Dosis Light';
+	font-size: 300%;
+	line-height: 60px;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 5px;
+	color: #404040;
+	border-bottom: 2px solid #404040;
+}

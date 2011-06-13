@@ -44,6 +44,7 @@
 			<head>
 				<title>PAP</title>
 				<link rel="stylesheet" type="text/css" href="PAP.css" />
+				<link rel="stylesheet" type="text/css" href="style.css" />
 				<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis+Light|Ubuntu:300|Ubuntu:300italic' rel='stylesheet' type='text/css' />
 				<meta http-equiv="x-ua-compatible" content="IE=edge" />
 			</head>
@@ -66,11 +67,11 @@
 		<xsl:variable name="ym" select="concat($y, $m)" />
 		<xsl:variable name="label" select="$config/cfg:months/cfg:month[@id = $m]/@name" />
 		<div class="month" id="{$y}-{$m}">
-			<span class="name">
+			<h2 class="name">
 				<xsl:value-of select="$label"/>
 				<xsl:text> </xsl:text>
 				<xsl:value-of select="$y"/>
-			</span>
+			</h2>
 			<xsl:apply-templates mode="single" select="key('kEntryByMonth', $ym)">
 				<xsl:sort select="date" />
 			</xsl:apply-templates>
