@@ -49,7 +49,7 @@
 				<meta http-equiv="x-ua-compatible" content="IE=edge" />
 			</head>
 			<body>
-				<h1>PAP - <xsl:value-of select="author"/></h1>
+				<h1><span>PAP - <xsl:value-of select="author"/></span></h1>
 				<div id="wrapper">
 					<xsl:apply-templates mode="month" select="entry[ generate-id() = generate-id(key('kEntryByMonth', concat(substring(date,7,4), substring(date,4,2)))[1]) ]">
 						<xsl:sort select="substring(date,7,4)"/>
