@@ -10,14 +10,6 @@ h1 {
 	text-shadow: 0px 1px 2px gray;
 	color: #404040;
 }
-
-#wrapper {
-	width: 90%;
-	max-width: 1024px;
-	min-width: 768px;
-	margin: auto;
-}
-
 .date {
 	float: left;
 	color: gray;
