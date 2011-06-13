@@ -1,14 +1,15 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-		<title>OmniRobot simulation - jsFiddle demo by Eric</title> 
+		<title>Holonomic Drive Trajectories</title> 
 		<script type="text/javascript" src="js/raphael-min.js"></script> 
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript" src="js/Vector.js"></script>
 		<script type="text/javascript" src="js/Matrix.js"></script>
 		<script type="text/javascript" src="js/AffineTransform.js"></script>
-
-		<style type='text/css'>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis+Light|Ubuntu:300|Ubuntu:300italic' rel='stylesheet' type='text/css' />
+		<style type="text/css">
 		.controls {
 			overflow: hidden;
 		}
@@ -230,14 +231,17 @@
 		</script> 
 	</head> 
 	<body>
-		<div id="raphael">
-		
-		</div>
-		<div class="controls">
-			<label class="toggler" data-toggle="drive"><input type="checkbox" checked /><span></span>Show drive vectors</label>
-			<label class="toggler" data-toggle="roll"><input type="checkbox"  /><span></span>Show roll vectors</label>
-			<label class="toggler" data-toggle="result"><input type="checkbox"  /><span></span>Show resultant vectors</label>
-			<label class="toggler" data-toggle="robot"><input type="checkbox" checked /><span></span>Show robot resultant vector</label>
+		<h1><span>Holonomic Drive Trajectories</span></h1>
+		<div id="wrapper">
+			<div id="raphael">
+			
+			</div>
+			<div class="controls">
+				<label class="toggler" data-toggle="drive"><input type="checkbox" checked /><span></span>Show drive vectors</label>
+				<label class="toggler" data-toggle="roll"><input type="checkbox"  /><span></span>Show roll vectors</label>
+				<label class="toggler" data-toggle="result"><input type="checkbox"  /><span></span>Show resultant vectors</label>
+				<label class="toggler" data-toggle="robot"><input type="checkbox" checked /><span></span>Show robot resultant vector</label>
+			</div>
 		</div>
 	</body>
 </html>
