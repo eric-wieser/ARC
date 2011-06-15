@@ -8,6 +8,8 @@ body {
 	padding: 0;
 }
 
+header, section, figure, figcaption { display: block; }
+
 #wrapper {
 	width: 90%;
 	max-width: 1024px;
@@ -75,4 +77,33 @@ h2 {
 	margin-bottom: 5px;
 	color: #404040;
 	border-bottom: 2px solid #404040;
+}
+
+figure {
+	margin: 10px;
+	margin-right: 0;
+	float: right;
+	padding: 5px;
+	border-radius: 10px;
+	background: #c0c0c0;
+	behavior: url(PIE.htc);
+	box-shadow: 0px 1px 2px gray;
+	clear: right;
+
+}
+
+figure img {
+	display: block;
+	border-radius: 5px;
+	width: 200px;
+	background: white;
+}
+
+figure figcaption {
+	text-align: center;
+	margin-top: 5px;
+}
+
+section {
+	overflow: hidden;
 }
