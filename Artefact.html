@@ -39,7 +39,17 @@
 			</section>
 			<section>
 				<h2>Drivers</h2>
-				<p></p>
+				<figure>
+					<img src="images/photos/driver-design.png" alt="Driver design" />
+					<figcaption>The layout of the board</figcaption>
+				</figure>
+				<figure>
+					<img src="images/photos/drivers.png" alt="Assembled drivers" />
+					<figcaption>Assembled drivers</figcaption>
+				</figure>
+				<p>The motors chosen can take up to 3.3A of current. In order to drive these safely, the driver chips have to be able to take at least this much. Initially, the plan was to get at pre built motor drivers, but they were generally too expensive, and either under-speced, or way over-speced. In the end, I decided to cuild the drivers myself</p>
+				<p>The chip used was a L298 dual H-bridge, which allows two DC motors to be powered at up to 2A. By paralleling the outputs, a current of 4A can be drawn. This is more than required, but it means there's no chance of the chip blowing up. The other thing the driver requires are clamp diodes to clamp the motor outputs to the supply voltage, preventing reverse EMF, which can damage the driver chip</p>
+				<p>The original plan was to make a PCB for the entire robot, and assemble the drivers on the PCB. However, PCB fabrication turned out to be expensive, and a lot of work. Instead, the motor drivers were assembled and soldered onto a piece of stripboard, which had the benefit of being prototypable.</p>
 			</section>
 			<section>
 				<h2>Control system</h2>
