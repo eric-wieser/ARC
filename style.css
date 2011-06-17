@@ -71,6 +71,7 @@ h1 span::before {
 h2 {
 	font-family: 'Terminal Dosis Light', 'Agency FB', 'Arial Narrow';
 	font-size: 300%;
+	font-weight: inherit;
 	line-height: 60px;
 	margin: 0;
 	padding: 0;
