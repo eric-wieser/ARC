@@ -3,7 +3,7 @@
 	color: gray;
 	font-size: 150%;
 	width: 30px;
-	font-family: 'Terminal Dosis Light';
+	font-family: 'Terminal Dosis Light', 'Agency FB', 'Arial Narrow';
 	text-align: center;
 	margin-right: 5px;
 	line-height: 30px;
@@ -17,7 +17,7 @@
 	float: right;
 	width: 30px;
 	font-size: 150%;
-	font-family: 'Terminal Dosis Light';
+	font-family: 'Terminal Dosis Light', 'Agency FB', 'Arial Narrow';
 	text-align: center;
 	margin-left: 5px;
 	line-height: 30px;
