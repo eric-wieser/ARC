@@ -35,7 +35,13 @@
 					<img src="images/photos/motor.png" alt="Motor" />
 					<figcaption><a href="http://www.pololu.com/catalog/product/1162">The motor</a></figcaption>
 				</figure>
-				<p></p>
+				<p>In a motor, speed and torque are related linearly. For a motor with a stall torque of \(T_\mbox{max}\), and a free-running rotational speed of \(\dot{\theta}_\mbox{max}\), the torque at angular velocity \(\dot{\theta}\) is:</p>
+				$$T = T_\mbox{max} \times \left(1 - \frac{\dot{\theta}}{\dot{\theta}_\mbox{max}}\right)$$
+				<p>This is a straight line, with intercepts at \(T_\mbox{max}\) and \(T_\mbox{max}\)</p>
+				<p>Now</p>
+				$$v = r\dot{\theta}$$
+				<p>and</p>
+				$$F = rT$$
 			</section>
 			<section>
 				<h2>Drivers</h2>
