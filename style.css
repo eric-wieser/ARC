@@ -113,6 +113,6 @@ section {
 	-webkit-column-gap: 20px;
 	-webkit-column-rule: 1px solid #c0c0c0;
 	-moz-column-count: 2;
-	-moz-column-gap: 20px
+	-moz-column-gap: 20px;
 	-moz-column-rule: 1px solid #c0c0c0;
 }
