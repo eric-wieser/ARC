@@ -121,7 +121,7 @@
 	<entry>
 		<date>05/04/2011</date>
 		<work>
-			<description>Compiled a more comprehensive and final shopping list on Google documents (http://bit.ly/robocup-shopping-list), to allow collaboration with my teammate</description>
+			<description>Compiled a more comprehensive and final shopping list on Google documents (http://bit.ly/robocup-shopping-list), to allow collaboration with Andrew</description>
 			<purpose>Eases the purchasing of parts, as all the information is in one place. Allows the total cost of the robot to be calculated, and the materials to be adjusted accordingly</purpose>
 		</work>
 		<todo>Keep looking into custom fabrication of parts</todo>
@@ -155,7 +155,7 @@
 	<entry tags="mechanics">
 		<date>17/04/2011</date>
 		<work>
-			<description>Teammate recieves split rings and washers. Measures them.</description>
+			<description>Andrew recieves split rings and washers. Measures them.</description>
 			<purpose>Allows wheel to be accurately CADed</purpose>
 		</work>
 		<work>
@@ -163,7 +163,7 @@
 			<purpose>Got more acquanted with the works of the CAD package I was using</purpose>
 		</work>
 		<todo>
-			Make teammate use calipers to measure parts
+			Make Andrew use calipers to measure parts
 		</todo>
 		<todo>
 			Get a quote for CAM of the wheels
@@ -180,7 +180,7 @@
 	<entry tags="mechanics">
 		<date>24/04/2011</date>
 		<work>
-			<description>Made teammate use calipers. CAD wheel. Again.</description>
+			<description>Made Andrew use calipers. CAD wheel. Again.</description>
 			<purpose>Final wheel design can be sent off for manufacturing</purpose>
 		</work>
 		<todo>Get another quote</todo>
@@ -188,7 +188,7 @@
 	<entry tags="software">
 		<date>04/05/2011</date>
 		<work>
-			<description>Parts arrive at teammates house.</description>
+			<description>Parts arrive at Andrew's house.</description>
 		</work>
 		<work>
 			<description>
@@ -207,7 +207,7 @@
 		<date>05/05/2011</date>
 		<work>
 			<description>
-				Received FEZ Panda II from Teammate.
+				Received FEZ Panda II from Andrew.
 			</description>
 			<purpose>
 				Software development can begin
@@ -238,7 +238,7 @@
 	<entry tags="electronics, mechanics, software">
 		<date>07/05/2011</date>
 		<work>
-			<description>Met up with teammate, and played with all the other cool "toys" that had been delivered. Discussed batteries, and mutilated some 6AA battery cases to accommodate the Lego Mindstorms NXT rechargeable batteries we had.</description>
+			<description>Met up with Andrew, and played with all the other cool "toys" that had been delivered. Discussed batteries, and mutilated some 6AA battery cases to accommodate the Lego Mindstorms NXT rechargeable batteries we had.</description>
 			<purpose>
 				Getting hold of an IR sensor has allowed me to write a program to read its output, which will be required in the final robot.<br />
 
@@ -261,7 +261,7 @@
 		<date>15/05/2011</date>
 		<work commit="7d59bb6faed79f0a1701">
 			<description>
-				Had another meeting with teammate.	Continued to experiment with shielding, to no gain.
+				Had another meeting with Andrew. Continued to experiment with shielding, to no gain.
 			</description>
 			<purpose>
 				Shielding is required in order to made the view of the IR sensors directional. Without shielding, the strength of the signal is independant of sensor orientation.
@@ -307,7 +307,7 @@
 				Finalized motor driver design. Did some research on how you actually cut stripboard, then actually cut the stripboard.
 			</description>
 			<purpose>
-				Stripboard must be cut before any components can be soldered on. Design needed finalizing so teammate could arrange the parts on the chassis
+				Stripboard must be cut before any components can be soldered on. Design needed finalizing so Andrew could arrange the parts on the chassis
 			</purpose>
 		</work>
 		<todo>
@@ -401,7 +401,7 @@
 		</work>
 		<work>
 			<description>
-				Teammate built a mock chassis out of foamex display board, and we screwed the motors on. Connected them up to the battery, and gauged speed. Moved very quickly.
+				Built a mock chassis out of foamex display board, and screwed the motors on. Connected them up to the battery, and gauged speed. Moved very quickly.
 			</description>
 			<purpose>
 				Proves that the motors chosen are the right ones
@@ -446,6 +446,44 @@
 		</work>
 		<todo>
 			Assemble the power boards, and order the chassis
+		</todo>
+	</entry>
+	<entry tags="electronics">
+		<date>16/06/2011</date>
+		<work>
+			<description>
+				Cut stripboard to size for use on the power board, filed, and drilled holes. Made a small change to the design beforehand.
+			</description>
+		</work>
+		<work>
+			<description>
+				Started soldering a loop of header pins to attach the infrared detectors to
+			</description>
+		</work>
+		<todo>
+			Finish the power boards, and finish soldering a pair of header pin loops
+		</todo>
+	</entry>
+	<entry tags="mechanics, software">
+		<date>19/06/2011</date>
+		<work>
+			<description>
+				Assembled a power board. Attempted to assemble a second, but Andrew drilled the holes in wrong place, so it will have to be made again from a new piece of stripboard
+			</description>
+			<purpose>
+				The power board takes the input from the two batteries, combines them, and routes them to the motors and FEZ Panda. The solenoid driver is also part of the board.
+			</purpose>
+		</work>
+		<work commit="6c4214782ebcfad34942">
+			<description>
+				Metal parts of the chassis arrive. The bottom half of a robot is assembled, and driven around. Solenoid is wired up as well, and tested as a kicker. Serves as a test for everything so far - wheels, motor drivers, and power board. All of them work.
+			</description>
+			<purpose>
+				I'm slightly worried about the (lack of) speed control on the motors. Running at anything other than full power, the motors stall very easily. There are two solutions I can think of for this: add a resistor to all the power boards, and have a closed-loop control system from the measured currrent, or try and keep the motors operating at full power as much as possible.
+			</purpose>
+		</work>
+		<todo>
+			Await delivery of the top layers of the chassis, so that sensors can be tested on the base. Build the other power board
 		</todo>
 	</entry>
 </pap>
