@@ -15,6 +15,7 @@ header, section, figure, figcaption { display: block; }
 	max-width: 1024px;
 	min-width: 768px;
 	margin: auto;
+	padding: 0px 10px;
 }
 
 h1 {
@@ -72,11 +73,23 @@ h2 {
 	font-size: 300%;
 	font-weight: inherit;
 	line-height: 60px;
-	margin: 0;
+	margin: 0 -10px 5px;
 	padding: 0;
-	margin-bottom: 5px;
 	color: #404040;
 	border-bottom: 2px solid #404040;
+}
+
+h3 {
+	margin: 0 -10px 5px;
+	padding: 0;
+	border-bottom: 1px solid #808080;
+	line-height: 30px;
+	font-size: 25px;
+
+}
+
+p {
+	margin: 10px 0px 20px;
 }
 
 figure {
@@ -104,8 +117,17 @@ figure figcaption {
 	margin-top: 5px;
 }
 
+h2 + figure {
+	margin-top: 5px;
+}
+figure + figure {
+	margin-top: 0px;
+}
+
 section {
 	overflow: hidden;
+	padding: 10px;
+	margin: -10px;
 }
 
 .columns {
@@ -115,4 +137,25 @@ section {
 	-moz-column-count: 2;
 	-moz-column-gap: 20px;
 	-moz-column-rule: 1px solid #c0c0c0;
+}
+
+.columns-2 {
+	padding: 0px 10px;
+	clear: both;
+	overflow: hidden;
+}
+.columns-2 .left {
+	border-right: 1px solid #c0c0c0;
+	padding-right: 9px;
+	float: left;
+	width: 50%;
+	margin-left: -10px;
+	margin-right: -1px;
+}
+.columns-2 .right {
+	border-left: 1px solid #c0c0c0;
+	padding-left: 9px;
+	float: left;
+	width: 50%;
+	margin-right: -10px;
 }
