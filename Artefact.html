@@ -46,49 +46,7 @@
 					<img src="images/photos/motor.png" alt="Motor" />
 					<figcaption><a href="http://www.pololu.com/catalog/product/1162">The motor</a></figcaption>
 				</figure>
-
-				<section style="clear: both">
-					<h3>Choosing a motor</h3>
-					<div class="columns-2">
-						<div class="left">
-							<p>In a motor, speed and torque are related linearly. For a motor with a stall torque of \(T_{max}\), and a free-running rotational speed of \(\dot{\theta}_{max}\), the torque at angular velocity \(\dot{\theta}\) is:</p>
-							$$T = T_{max} \times \left(1 - \frac{\dot{\theta}}{\dot{\theta}_{max}}\right)$$
-							<p>This is a straight line, with intercepts at \(T_{max}\) and \(\dot{\theta}_{max}\)</p>
-							<p>The equations for torque and rotational velocity should then be looked at</p>
-							$$\begin{align}
-								v &= r\dot{\theta} \\
-								F &= ma = rT \\
-							\end{align}$$
-							<p>From these, we can express the acceleration of the robot in terms of its velocity</p>
-							$$\begin{align}
-								\therefore a &= \frac{rT}{m} \\
-								             &= \frac{r \times T_{max} \left(1 - \frac{\dot{\theta}}{\dot{\theta}_{max}}\right)}{m} \\
-								             &= \frac{T_{max}}{m} \left(r - \frac{r\dot{\theta}}{\dot{\theta}_{max}}\right) \\
-								             &= \frac{T_{max}}{m} \left(r - \frac{v}{\dot{\theta}_{max}}\right) \\
-								             &= \frac{r \times T_{max}}{m} - \frac{T_{max}}{m \times \dot{\theta}_{max}} v
-							\end{align}$$
-						</div>
-						<div class="right">
-							<p>At this point, it simplifies things greatly to define constants \(k_1\) and \(k_2\) such that</p>
-							$$ k_1 = \frac{r \times T_{max}}{m}, k_2 = \frac{T_{max}}{m \times \dot{\theta}_{max}} $$
-							<p>allowing the earlier equation to be expressed as</p>
-							$$\begin{align}
-								a &= k_1 - k_2 \times v \\
-								\Rightarrow \frac{dv}{dt} &= k_1 - k_2 \times v \\
-							\end{align}$$
-							<p>This is a differential equation of a standard form, with the solution</p>
-							$$v = \frac{k_1}{k_2} + ce^{k_2t}$$
-							<p>Solving the differential equation introduces a constant of integration, \(c\). This is a result of not taking into account the initial speed when \(t = 0\). Using a value of \(v = 0\) when \(t = 0\),</p>
-							$$\begin{align}
-								0 &= \frac{k_1}{k_2} + ce^{k_2\times0} = \frac{k_1}{k_2} + ce^0 = \frac{k_1}{k_2} + c \\
-								\Rightarrow c &= - \frac{k_1}{k_2} \\
-								\Rightarrow v &= \frac{k_1}{k_2} - \frac{k_1}{k_2}e^{k_2t} = \frac{k_1}{k_2} \left(1 - e^{k_2t}\right) \\
-							\end{align}$$
-						</div>
-					</div>
-				</section>
-				<p>This gives a formula for the velocity of a wheel \(t\) second after turning the motor on from rest. By filling in a table of motor characteristics (\(T_{max}\) and \(\dot{\theta}_{max}\)), and calculating \(k_1\) and \(k_2\), graphs of velocity over time can be plotted for each motor. The most suitable motor could then be determined from the graphs</p>
-			</section>
+				<p>More details on how the motor was chosen can be seen in <a href="Appendices/Motors.html">Appendix </a></p>
 			<section>
 				<h2>Drivers</h2>
 				<figure>
