@@ -104,6 +104,11 @@ public Vector Get() {
 					<p>By reading a pair of I&sup2;C registers, and writing some commands, the compass heading can be obtained, in degrees. This is then converted to radians, for convenience</p>
 					<p>The purpose of the compass is to keep the robot shooting in the right direction. Upon start up, the robot records the compass heading, which is the direction of the opponent goal. This is then compared with the compass heading to find the field-relative robot orientation</p>
 				</section>
+				<section>
+					<h3>Using the light gate</h3>
+					<p>The laser is connected directly to the power supply coming from the FEZ. Originally, it was connected to the 5V supply, but this was deemed "Extremely blinding", so was taken down to 3.3V.</p>
+					<p>The photodiode generates electricity when the laser points at it. This generated voltage can be measured by the FEZ, on an analog input. When the beam is unbroken, it hits the photodiode, and a voltage is generated. If the beam is broken (by the ball), the photodiode generates a lower voltage. By comparing the voltage across the photodiode to a known threshold value, it can be determined whether the light gate is obstructed</p>
+				</section>
 			</section>
 		</div>
 	</body>

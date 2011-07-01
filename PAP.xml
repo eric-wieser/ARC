@@ -486,4 +486,92 @@
 			Await delivery of the top layers of the chassis, so that sensors can be tested on the base. Build the other power board
 		</todo>
 	</entry>
+	<entry tags="software">
+		<date>27/06/2011</date>
+		<work>
+			<description>
+				Looked into RLP. Set everthing up, and wrote an RLP procedure in C to read all the sensors. <em>Way</em> faster than the managed C# code.
+			</description>
+			<purpose>
+				This is looking very good. I was really worried that the processor would simply not be fast enough to process all the readings in a reasonable time, but I was pleasantly surprised.
+			</purpose>
+		</work>
+		<todo>
+			Tweak the RLP code a bit. Integrate it with the managed C#.
+		</todo>
+	</entry>
+	<entry tags="software">
+		<date>28/06/2011</date>
+		<work>
+			<description>
+				Removed the GHI Electronics RLP key from the public repository!
+			</description>
+			<purpose>
+				Wasn't supposed to publish that!
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Tested a lot of drive code, as parts of it were not functioning correctly. Turned out it was a Matrix multriplication problem
+			</description>
+			<purpose>
+				It's slightly alarming that I didn't spot this earlier. I guess that's what happens if you write code without testing ig. At least it's working now
+			</purpose>
+		</work>
+		<todo>
+			Try and get the PID controlled heading to work
+		</todo>
+	</entry>
+	<entry tags="software">
+		<date>29/06/2011</date>
+		<work>
+			<description>
+				Tuned the PID controller that keeps the robot pointing towards field north. Corrected a bunch of relevant bugs.
+			</description>
+			<purpose>
+				It's been quite a while since I last tuned a PID controller. I started off with trial and error, but in the end decided to use the Zieger-Nichols method. This didn't work when I tried it a few years ago, but it worked like a charm in this case
+			</purpose>
+		</work>
+		<todo>
+			Start writing a game strategy
+		</todo>
+	</entry>
+	<entry tags="electronics software">
+		<date>30/06/2011</date>
+		<work>
+			<description>
+				Attempted to refine PID Controller. Discovered a jammed motor
+			</description>
+			<purpose>
+				This is bad. Very bad.
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Dismantled broken motor, and found a broken tooth inside. Reassembled with broken tooth removed, to no avail. Ordered a pair of spare motors, which should arrive before the competition.
+			</description>
+			<purpose>
+				I'm worried that another gear tooth will break off during the competition. It's critical that both robots are functional for the duration of the competition, so the only real option at this point is to have spares.
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Wrote some code to handle status LEDs.
+			</description>
+			<purpose>
+				Without status LEDs, if the robot breaks mid round, there is no way of knowing what broke it.
+			</purpose>
+		</work>
+		<work>
+			<description>
+				Wrote the first complete soccer program. The robot follows the ball, faces the opponent goal, and stays away from the walls.
+			</description>
+			<purpose>
+				I'm very pleased that I have a functional soccer program. It's not quite good enough yet, but it's a very good start. It <em>is</em> perhaps slightly late to have a first program, but the robot's performance is looking very promising.
+			</purpose>
+		</work>
+		<todo>
+			Write some more advanced soccer strategies, with a different robot and goalie strategy.
+		</todo>
+	</entry>
 </pap>
