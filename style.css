@@ -80,7 +80,7 @@ h2 {
 }
 
 h3 {
-	margin: 0 -10px 5px;
+	margin: 0 -10px 5px -30px;
 	padding: 0;
 	border-bottom: 1px solid #808080;
 	line-height: 30px;
@@ -147,6 +147,11 @@ section {
 	overflow: hidden;
 	padding: 10px;
 	margin: -10px;
+}
+
+section section {
+	margin-left: -10px;
+	padding-left: 30px;
 }
 
 .columns {

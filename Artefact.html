@@ -9,8 +9,11 @@
 		<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 		<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+		
+		<link href="code-prettify/prettify.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="code-prettify/prettify.js"></script>
 	</head>
-	<body>
+	<body onload="prettyPrint()">
 		<h1><span>The Artefact</span></h1>
 		<div id="wrapper">
 			<section>
@@ -41,7 +44,6 @@
 				<p>The most time consuming part of this aspect of the artefact was designing the aluminum hub. This is partly because of the accuracy required. A technical drawing program was used to design this. The design went through multiple sizes, as the measurements of the washers and split ring were gradually improved. The final design was set off to <a href="http://www.microkerf.com/">microkerf</a>, where it was laser cut in 4mm aluminum</p>
 			</section>
 			<section id="motors">
-			<section>
 				<h2>Motors and Drivers</h2>
 				<p>The motors chosen can take up to 3.3A of current. In order to drive these safely, the driver chips have to be able to take at least this much. Initially, the plan was to get at pre built motor drivers, but they were generally too expensive, and either under-speced, or way over-speced. In the end, I decided to cuild the drivers myself</p>
 				<p>The chip used was a L298 dual H-bridge, which allows two DC motors to be powered at up to 2A. By paralleling the outputs, a current of 4A can be drawn. This is more than required, but it means there's no chance of the chip blowing up. The other thing the driver requires are clamp diodes to clamp the motor outputs to the supply voltage, preventing reverse EMF, which can damage the driver chip.</p>
@@ -77,12 +79,31 @@
 			<section>
 				<h2>Sensor input</h2>
 				<p>The robot has 4 types of sensor. There is a set of 16 infared detectors (the  TSOP 1138), arranged around the circumference, that can detect the ball. There is a set of four Ultrasonic sensors to detect the walls. There is a compass (the HMC6532) to detect the heading of the robot. Finally, there's a laser diode pointed at a photodiode acting as a light gate, to detect the presence of the ball in the ball holder</p>
-				<h3>US and IR</h3>
-				<p>The ball gives off a 1.2kHz stepped infrared waveform on a 40kHz carrier frequency, which is picked up by the IR detectors on the robot. The signal returned is a PWM signal, with a low pulse every 833&micro;s. The width of this pulse gives the strenth of the signal.</p>
-				<p>To use the US (ultrasonic) sensors, the controllerr must send a short high pulse. The sensor will then send an Ultrasonic pings, and respond with a pulse, whose width is the time taken to recieve a bounce. By using the speed of sound, the distance can be obtained</p>
-				<p>Initially, both these sensors were read in a tight loop C# side. However, this had big performance impacts, and therefore accuracy problems - the code had to loop through 20 sensors, and catch microsecond-wide pulses. This simply isn't possible with the managed C# code. The solution to this was to use a feature of the FEZ called "RLP", which stands for "Runtime Loadable Procedure". Basically, this allows me to drop down into native C code, which runs far faster than the managed C# code. With this, I wrote a procedure to read all the sensor information simultaneously, then return it to the managed c# code</p>
-
-				 
+				<section>
+					<h3>Reading the US and IR sensors</h3>
+					<p>The ball gives off a 1.2kHz stepped infrared waveform on a 40kHz carrier frequency, which is picked up by the IR detectors on the robot. The signal returned is a PWM signal, with a low pulse every 833&micro;s. The width of this pulse gives the strenth of the signal.</p>
+					<p>To use the US (ultrasonic) sensors, the controllerr must send a short high pulse. The sensor will then send an Ultrasonic pings, and respond with a pulse, whose width is the time taken to recieve a bounce. By using the speed of sound, the distance can be obtained</p>
+					<p>Initially, both these sensors were read in a tight loop C# side. However, this had big performance impacts, and therefore accuracy problems - the code had to loop through 20 sensors, and catch microsecond-wide pulses. This simply isn't possible with the managed C# code. The solution to this was to use a feature of the FEZ called "RLP", which stands for "Runtime Loadable Procedure". Basically, this allows me to drop down into native C code, which runs far faster than the managed C# code. With this, I wrote a procedure to read all the sensor information simultaneously, then return it to the managed c# code</p>
+				</section>
+				<section>
+					<h3>Combining IR sensor readings</h3>
+					<p>To be useful, the readings of all the IR sensors need to be combined to get a single measure of direction. To do this, each sensor was assigned a vector in the sofware, that points in the direction the sensors faces. By taking the strength of each sensor, multiplying it by the direction vector, and summing the vectors to get a resultant. In code:</p>
+<pre class="prettyprint">
+public Vector Get() {
+	Vector sourceDirection = 0;
+	foreach (OrientedSensor sensor in Sensors) {
+		sourceDirection += sensor.Intensity * sensor.Direction;
+	}
+	return sourceDirection;
+}</pre>
+					<p>The result is also scaled, but this is not significant</p>
+				</section>
+				<section>
+					<h3>Using the compass</h3>
+					<p>The compass is an I&sup2;C device. An I&sup2;C driver is build into the FEZ, so using the sensor is trivial. I&sup2;C is a data protocol running on two wires. Put simply, the master device (the FEZ) issues a read request, and the slave device (the compass) responds with bytes of data.</p>
+					<p>By reading a pair of I&sup2;C registers, and writing some commands, the compass heading can be obtained, in degrees. This is then converted to radians, for convenience</p>
+					<p>The purpose of the compass is to keep the robot shooting in the right direction. Upon start up, the robot records the compass heading, which is the direction of the opponent goal. This is then compared with the compass heading to find the field-relative robot orientation</p>
+				</section>
 			</section>
 		</div>
 	</body>
