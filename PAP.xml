@@ -487,8 +487,20 @@
 		</todo>
 	</entry>
 	<entry tags="software">
+		<date>23/06/2011</date>
+		<work commit="9e9cc1a932d6bc92073a">
+			<description>
+				Wrote some code to read all the Ultrasonic sensors simultaneously. Found that the c# code simply didn't execute fast enough to get any reasonable accuracy.
+			</description>
+			<purpose>
+				It's not gonna be acceptable to read the sensors sequentially. They really need to all be pinged at the same time, as otherwise there will be issues with one sensor recieving another's ping. If C# isn't fast enough, the only option is to drop into native code.
+			</purpose>
+		</work>
+		<todo>Write some native C# code to read the Ultrasonic sensors. May as well read the IR sensors at the same time</todo>
+	</entry>
+	<entry tags="software">
 		<date>27/06/2011</date>
-		<work>
+		<work commit="48431223f49ad2d6cc42">
 			<description>
 				Looked into RLP. Set everthing up, and wrote an RLP procedure in C to read all the sensors. <em>Way</em> faster than the managed C# code.
 			</description>
@@ -502,7 +514,7 @@
 	</entry>
 	<entry tags="software">
 		<date>28/06/2011</date>
-		<work>
+		<work commit="b83ae79e0306c0c0f76e">
 			<description>
 				Removed the GHI Electronics RLP key from the public repository!
 			</description>
@@ -524,7 +536,7 @@
 	</entry>
 	<entry tags="software">
 		<date>29/06/2011</date>
-		<work>
+		<work commit="8c6b47f554cf0ca33f7b">
 			<description>
 				Tuned the PID controller that keeps the robot pointing towards field north. Corrected a bunch of relevant bugs.
 			</description>
@@ -562,7 +574,7 @@
 				Without status LEDs, if the robot breaks mid round, there is no way of knowing what broke it.
 			</purpose>
 		</work>
-		<work>
+		<work commit="e5bb9d87278dfa8849f2">
 			<description>
 				Wrote the first complete soccer program. The robot follows the ball, faces the opponent goal, and stays away from the walls.
 			</description>
