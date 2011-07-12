@@ -5,8 +5,7 @@
 	xmlns:cfg="http://tempuri.org/config"
 	exclude-result-prefixes="cfg">
 	
-	<xsl:output method="html" encoding="utf-8" indent="yes" />
-
+	<xsl:output method="html" encoding="utf-8" indent="yes" doctype-system="about:legacy-compat" />
 	<!-- index news by their "yyyy-mm" value (first 7 chars) -->
 	<xsl:key
 		name="kEntryByMonth"
@@ -39,7 +38,7 @@
 	<xsl:variable name="config" select="document('')/*/cfg:config" />
 	
 	<xsl:template match="/pap">
-		<xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>
+		<!--<xsl:text disable-output-escaping='yes'>&lt;!DOCTYPE html></xsl:text>-->
 		<html>
 			<head>
 				<title>PAP</title>
