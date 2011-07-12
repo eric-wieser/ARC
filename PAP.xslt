@@ -85,9 +85,9 @@
 			<div class="date"><xsl:value-of select="$d"/></div>
 			<ul class="tags"><xsl:apply-templates select="@tags" /></ul>
 			<div class="content">
-				<dl>
+				<ul>
 					<xsl:apply-templates select="work"/>
-				</dl>
+				</ul>
 				<xsl:if test="todo">
 					<div class="todo">
 						<span class="subheading">Todo:</span>
@@ -99,17 +99,17 @@
 	</xsl:template>
 
 	<xsl:template match="work">
-		<dt>
-			<xsl:if test="@commit">
-				<a class="github" href="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011/commit/{@commit}" title="View the code on github!" target="_blank">Commit</a>
-			</xsl:if>
-			<xsl:copy-of select="description/node()" />
-		</dt>
-		<xsl:if test="purpose">
-		<dd>
-			<xsl:copy-of select="purpose/node()" />
-		</dd>
-		</xsl:if>
+		<li>
+			<div class="work">
+				<xsl:if test="@commit">
+					<a class="github" href="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011/commit/{@commit}" title="View the code on github!" target="_blank">Commit</a>
+				</xsl:if>
+				<xsl:copy-of select="description/node()" />
+			</div>
+			<div class="purpose">
+				<xsl:copy-of select="purpose/node()" />
+			</div>
+		</li>
 	</xsl:template>
 
 	<xsl:template match="@tags">

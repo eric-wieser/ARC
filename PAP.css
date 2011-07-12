@@ -51,7 +51,7 @@
 
 .entry {
 	overflow: hidden;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 }
 
 .content {
@@ -63,41 +63,72 @@
 }
 
 .github {
-	background: #c0c0c0 url(https://d3nwyuy0nl342s.cloudfront.net/images/modules/dashboard/news/site.png) no-repeat 50% 50%;
+	background: #e0e0e0 url(https://d3nwyuy0nl342s.cloudfront.net/images/modules/dashboard/news/site.png) no-repeat 50% 50%;
 	float: right;
 	text-indent: -9999px;
-	width: 16px;
-	height: 16px;
+	width: 19px;
+	height: 19px;
 	display: block;
-	border-radius: 2px;
+	border-radius: 5px;
 	behavior: url(PIE.htc);
-	margin-left: 5px;
+	margin-right: -25px;
+	position: relative;
+	border: 1px solid #c0c0c0;
 }
 .github:hover {
 	background-color: #ffc080;
 }
 
-dl{
+.content > ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	position: relative;
+}
+
+/*.content > ul ::after {
+	content: "";
+	position: absolute;
+	display: block;
+	top:5px;
+	left: 50%;
+	bottom: 5px;
+	width: 1px;
+	background: #c0c0c0;
+	margin: 0;
+	padding: 0;
+	box-shadow: 0px 0px 2px 0px #e0e0e0;
+}*/
+
+.content > ul li{
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+	padding-left: 38px;
 }
-dt {
+.content > ul .work {
 	float: left;
 	width: 50%;
 	padding: 4px;
-	clear: left;
+	padding-right: 14px;
 	border-right: 1px solid #c0c0c0;
-	margin: 0;
 	margin-right: -1px;
+	/*Width: 50% + (4 + 14 + 1)px = 50% + 19px;*/
+	margin-left: -38px;
+
+	margin-bottom: -1000px;
+	padding-bottom: 1004px;
 }
-dd {
-	margin: 0;
-	font-style: italic;
-	border-left: 1px solid #c0c0c0;
+.content > ul .purpose {
+	float: left;
+	width: 50%;
 	padding: 4px;
-	behavior: url(PIE.htc);
-	overflow: hidden;
+	padding-left: 14px;
+	border-left: 1px solid #c0c0c0;
+	/*Width: 50% + (4 + 14 + 1 - 1)px = 50% + 18px;*/
+
+	margin-bottom: -1000px;
+	padding-bottom: 1004px;
 }
 .todo {
 	line-height: 20px;
