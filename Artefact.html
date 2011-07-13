@@ -66,15 +66,79 @@
 				<p>More details on how the motor was chosen can be seen in <a href="Appendices/Motors.html">Appendix A</a></p>
 			</section>
 			<section>
-				<h2>Control system</h2>
-				<h3>Direction</h3>
-				<p></p>
-				<h3>Rotation</h3>
-				<p>The formula for the velocity \(v\) of a point of distance \(r\) from the center of rotation, rotating at an angular velocity of \(\omega\) is given by the equation:</p>
-				$$v = r\omega$$
-				<p>However, this equation is of limited use. Thinking back to the straight-line driving, it is much more convenient if the variables can be expressed as vectors. It can be seen that the velocity of a point displaced \(\mathbf{r}\) from the center of rotation is a tangent to the circular motion, ie \(\mathbf{v}\) is perpendicular to \(\mathbf{r}\).</p>
-				<p>From this information, the following equation can be derived:</p>
-				$$\mathbf{v} = \mathbf{r}^\perp \times \omega$$
+				<h2>Drive system</h2
+				<p>Throughout this section, vector notation will be used. Vectors are simply a coordinate pair. Variables in bold face are vectors. For convenience,
+				\(
+					\mathbf{v} \equiv \left[\begin{array}{ c } v_1 \\ v_2 \end{array}\right]
+				\).</p>
+				<p>For any given trajectory of the robot, each point on the robot has it's own unique trajectory. Conversely, by controlling the trajectory of three or more points on the robot, any robot trajectory can be achieved. In our case, the controlled points of the robot are those at the center of the three wheels. By controlling the trajectory of each wheel, the overall trajectory can be controlled #####
+				<section>
+					<h3>Direction</h3>
+					<p>If the robot is to travel in a certain direction, then every point on the robot must also travel in that direction. The points of interest are those at the center of each wheel.</p>
+					<p>Each wheel has two independant vectors of motion. There is the drive vector, \(\mathbf{d}\), which acts tangential to the large wheel and is proportional to the motor voltage, and the slip vector \(\mathbf{s}\), which is independant of the motor voltage. Since these vectors are independant (i.e, not parallel), then any vector can be expressed as the sum of multiples of the two:</p>
+					$$\mathbf{v} \equiv k_d\mathbf{d} + k_s\mathbf{s}$$
+					<p>Taking \(\mathbf{v}\) to be the desired velocity of the robot, the formula can be used to find the speed to drive the motor at. This is simply \(k_d\). The trick, of course, is finding the value of \(k_d\). To do this, matrices are required.</p>
+					<p>The equation above can be rewritten as</p>
+					$$\mathbf{v} =
+					\left[\begin{array}{ c c }
+						d_1 & s_1 \\
+						d_2 & s_2
+					\end{array}\right]
+					\times 
+					\left[\begin{array}{ c }
+							k_d \\
+							k_s
+						\end{array}
+					\right]
+					$$
+					<p>Rearranging to find \(k_d\) and \(k_s\):</p>
+					$$
+					\left[\begin{array}{ c }
+							k_d \\
+							k_s
+						\end{array}
+					\right]
+					=
+					\left[\begin{array}{ c c }
+						d_1 & s_1 \\
+						d_2 & s_2
+					\end{array}\right]^{-1} \times \mathbf{v}
+					$$
+					<p>This is the general formula to find the rotational speed \(k_d\) of a wheel with given drive and slip vectors</p>
+					<p>At this point, it helps to write some code. Each wheel can be thought of as an object with two members: a transformation matrix, and a motor object. The position of the wheel is also stored, for use in rotation later</p>
+					<pre class="prettyprint">
+public class Wheel
+{
+	public Vector Position {get; private set;}
+	public Matrix TransformMatrix { get; private set; }
+	public IMotor Motor { get; private set; }
+
+	public Wheel(Vector position, Matrix transformMatrix, IMotor motor)
+	{
+		Position = position;
+		Motor = motor;
+		TransformMatrix = transformMatrix;
+	}
+
+	public Vector TargetVector
+	{
+		set
+		{
+			Vector wheelVector = TransformMatrix.Inverse * value;
+			motor.Speed = wheelVector.X;
+		}
+	}
+}
+					</pre>
+				</section>
+				<section>
+					<h3>Rotation</h3>
+					<p>The formula for the velocity \(v\) of a point of distance \(r\) from the center of rotation, rotating at an angular velocity of \(\omega\) is given by the equation:</p>
+					$$v = r\omega$$
+					<p>However, this equation is of limited use. Thinking back to the straight-line driving, it is much more convenient if the variables can be expressed as vectors. It can be seen that the velocity of a point displaced \(\mathbf{r}\) from the center of rotation is a tangent to the circular motion, ie \(\mathbf{v}\) is perpendicular to \(\mathbf{r}\).</p>
+					<p>From this information, the following equation can be derived:</p>
+					$$\mathbf{v} = \mathbf{r}^\perp \times \omega$$
+				</section>
 			</section>
 			<section>
 				<h2>Sensor input</h2>
