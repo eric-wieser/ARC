@@ -18,7 +18,7 @@
 		<div id="wrapper">
 			<section>
 				<h2>Overview</h2>
-				<p>This robot is designed to compete in Robocup Junior Soccer A Lightweight. In the game, there is an electronic ball that gives off an infrared signal. Teams consisting of two 1.25kg robots play against each other on a 1.2m &times; 1.8m pitch. There are rules governing the size and shape of the robots. The robots play football autonomously for two 10 minute halves</p>
+				<p>This robot is designed to compete in the Robocup Junior Soccer A Lightweight competition. In the game, there is an electronic ball that gives off an infrared signal. Teams consisting of two 1.25kg robots play against each other on a 1.2m &times; 1.8m pitch. There are rules governing the size and shape of the robots. The robots play football autonomously for two 10 minute halves</p>
 				<aside class="horizontal">
 					<figure>
 						<img src="images/drawings/field.png" alt="Soccer A Field" style="width: 300px"/>
@@ -76,8 +76,8 @@
 			</section>
 			<section id="motors">
 				<h2>Motors and Drivers</h2>
-				<p>The motors chosen can take up to 3.3A of current. In order to drive these safely, the driver chips have to be able to take at least this much. Initially, the plan was to get at pre built motor drivers, but they were generally too expensive, and either under-speced, or way over-speced. In the end, I decided to build the drivers myself.</p>
-				<p>The chip used was a L298 dual H-bridge, which allows two DC motors to be powered at up to 2A. By paralleling the outputs, a current of 4A can be drawn. This is more than required, but it means there's no chance of the chip blowing up. The other thing the driver requires are clamp diodes to clamp the motor outputs to the supply voltage, preventing reverse EMF, which can damage the driver chip.</p>
+				<p>The motors chosen can take up to 3.3A of current. In order to drive these safely, the driver chips have to be able to take at least this much current. Initially, the plan was to buy pre-built motor drivers, but they were generally too expensive, and either insufficiently powerful, or much more powerful then they needed to be. In the end, I decided to build the drivers myself.</p>
+				<p>The chip used was an L298 dual H-bridge, which allows two DC motors to be powered in both direction, drawing up to 2A of current. By paralleling the outputs, a current of 4A can be drawn. This is more than than the motors will draw, but it means there's no chance of the chip blowing up. The other thing the driver requires are clamp diodes to clamp the motor outputs to the supply voltage, preventing reverse EMF, which can damage the driver chip.</p>
 				<aside class="horizontal">
 					<figure>
 						<img src="images/photos/motor.png" alt="Motor" />
