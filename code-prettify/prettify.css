@@ -4,7 +4,8 @@ pre.prettyprint {
 	padding: 5px;
 	margin: 0px -5px;
 	border-radius: 5px;
-	background: #F0F0F0;
-	box-shadow: inset 0px 1px 2px #c0c0c0;
+	background: white;
+	border: 1px solid #F0F0F0;
+	/*box-shadow: inset 0px 1px 2px #c0c0c0;*/
 	line-height: 15px;
 }

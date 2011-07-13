@@ -1,6 +1,6 @@
 body {
 	font-family: 'Ubuntu', 'Calibri', 'Arial';
-	background: #e0e0e0;
+	background: white;
 	line-height: 20px;
 	font-weight: 300;
 	text-align: justify;
@@ -73,10 +73,11 @@ h2 {
 	font-size: 300%;
 	font-weight: inherit;
 	line-height: 60px;
-	margin: 0 -10px 5px;
-	padding: 0;
+	margin: -5px -10px 5px;
+	padding: 0px;
 	color: #404040;
 	border-bottom: 2px solid #404040;
+	position: relative;
 }
 
 h3 {
@@ -112,7 +113,7 @@ figure img {
 	border-radius: 5px;
 	width: 200px;
 	height: 200px;
-	background: #f0f0f0;
+	background: white;
 }
 
 figure figcaption {
@@ -143,15 +144,39 @@ aside.horizontal figure {
 	margin: 5px;
 }
 
+#wrapper > section {
+
+	border: 1px solid #f0f0f0;
+	border-radius: 10px;
+	background: #f8f8f8;
+	padding: 5px 15px 15px;
+}
+
 section {
 	overflow: hidden;
-	padding: 10px;
-	margin: -10px;
+	padding: 0px 10px 10px;
+	margin: 5px -10px;
+	position: relative;
 }
+/*
+section > :nth-child(2)::before {
+	background: #c0c0c0;
+	content: "";
+	margin-bottom: -1000px;
+	padding-bottom: 1000px;
+	display: block;
+	width: 1px;
+	margin-left: -5px;
+	position: relative;
+	z-index: -1;
+}*/
 
 section section {
 	margin-left: -10px;
 	padding-left: 30px;
+}
+section :last-child {
+	margin-bottom: 0;
 }
 
 .columns {
