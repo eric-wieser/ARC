@@ -30,7 +30,7 @@
 					</figure>
 					<span></span>
 				</aside>
-				<p>I entered this competition with my friend Andrew Wightwick. He focused on the chassis design and manufacturing, while I was more involved in the electronics and software aspect of the robot. As such, this document does not describe the entirety of the robot</p>
+				<p>I entered this competition with my friend Andrew Wightwick. He focused on the chassis design and manufacturing, while I was more involved in the electronics and software aspect of the robot. As such, this document does not describe the entirety of the robot.</p>
 				<section>
 					<h3>Version control - Git</h3>
 					<p>To keep track of the software as it was written, as well as this document, a distributed version control system was used - Git. Essentially, this allows changes to be "committed" to a history, such that you can see what changes have been made, as well as revert to older versions.</p>
@@ -45,7 +45,7 @@
 					<figcaption>The controller</figcaption>
 				</figure>
 				<p>The controller can be though of as the "brain" of the robot. It reads from and writes to the sensors, and drives the robot in response.</p>
-				<p>The robot uses a FEZ Panda II, from GHI Electonics. It's an Arduino based design, but boasting more <acronym title="General Purpose Input / Output">GPIO</acronym> pins, and programmed in C#, rather than C++. I'd had experience with the Arduino before, but had found the software frustrating. Since the FEZ runs the .NET Micro Framework, C# is available, which is a much nicer language</p>
+				<p>The robot uses a FEZ Panda II, from GHI Electonics. It's an Arduino based design, but boasting more <acronym title="General Purpose Input / Output">GPIO</acronym> pins, and programmed in C#, rather than C++. I'd had experience with the Arduino before, but had found the software frustrating. Since the FEZ runs the .NET Micro Framework, C# is available, which is a much nicer language.</p>
 			</section>
 			<section>
 				<h2>Wheels</h2>
@@ -88,8 +88,8 @@
 						<figcaption>The layout of the board</figcaption>
 					</figure>
 					<figure>
-						<img src="images/photos/drivers.png" alt="Assembled drivers" />
-						<figcaption>Assembled drivers</figcaption>
+						<img src="images/photos/driver.jpg" alt="Assembled driver" />
+						<figcaption>Assembled driver</figcaption>
 					</figure>
 					<span></span>
 				</aside>
@@ -151,7 +151,7 @@ public class Wheel
 }</pre>
 				<section>
 					<h3>Straight motion</h3>
-					<p>If the robot follows a straight trajectory, then every point on the robot follows a parallel trajectory. In code.</p>
+					<p>If the robot follows a straight trajectory, then every point on the robot follows a parallel trajectory. In code:</p>
 					<pre class="prettyprint">
 public SetDriveVector(Vector driveVector)
 {
@@ -195,6 +195,10 @@ public SetParameters(Vector direction, double rotation)
 				<p>The robot has 4 types of sensor. There is a set of 16 infrared detectors (the  TSOP 1138), arranged around the circumference, that can detect the ball. There is a set of four Ultrasonic sensors to detect the walls. There is a compass (the HMC6532) to detect the heading of the robot. Finally, there's a laser diode pointed at a photodiode acting as a light gate, to detect the presence of the ball in the ball holder.</p>
 				<section>
 					<h3>Reading the US and IR sensors</h3>
+					<figure>
+						<img src="images/photos/ultrasonic.jpg" alt="Ultrasonic sensor" />
+						<figcaption>The ultrasonic sensor</figcaption>
+					</figure>
 					<p>The ball gives off a 1.2kHz stepped infrared waveform on a 40kHz carrier frequency, which is picked up by the IR detectors on the robot. The signal returned is a PWM signal, with a low pulse every 833&micro;s. The width of this pulse gives the strength of the signal.</p>
 					<p>To use the US (ultrasonic) sensors, the controller must send a short high pulse. The sensor will then send an Ultrasonic pings, and respond with a pulse, whose width is the time taken to receive a bounce. By using the speed of sound, the distance can be obtained.</p>
 					<p>Initially, both these sensors were read in a tight loop C# side. However, this had big performance impacts, and therefore accuracy problems - the code had to loop through 20 sensors, and catch microsecond-wide pulses. This simply isn't possible with the managed C# code. The solution to this was to use a feature of the FEZ called "RLP", which stands for "Runtime Loadable Procedure". Basically, this allows me to drop down into native C code, which runs far faster than the managed C# code. With this, I wrote a procedure to read all the sensor information simultaneously, then return it to the managed c# code.</p>
@@ -214,6 +218,10 @@ public Vector Get() {
 				</section>
 				<section>
 					<h3>Using the compass</h3>
+					<figure>
+						<img src="images/photos/hmc6352.jpg" alt="HMC6352 I&sup2;C Compass" />
+						<figcaption>The compass</figcaption>
+					</figure>
 					<p>The compass is an I&sup2;C device. An I&sup2;C driver is build into the FEZ, so using the sensor is trivial. I&sup2;C is a data protocol running on two wires. Put simply, the master device (the FEZ) issues a read request, and the slave device (the compass) responds with bytes of data.</p>
 					<p>By reading a pair of I&sup2;C registers, and writing some commands, the compass heading can be obtained, in degrees. This is then converted to radians, for convenience.</p>
 					<p>The purpose of the compass is to keep the robot shooting in the right direction. Upon start up, the robot records the compass heading, which is the direction of the opponent goal. This is then compared with the compass heading to find the field-relative robot orientation.</p>
@@ -221,6 +229,10 @@ public Vector Get() {
 				<section>
 					<h3>Using the light gate</h3>
 					<p>The laser is connected directly to the power supply coming from the FEZ. Originally, it was connected to the 5V supply, but this was deemed "Extremely blinding", so was taken down to 3.3V.</p>
+					<figure class="center">
+						<img src="images/photos/light-gate.jpg" alt="Laser and photodiode" />
+						<figcaption>The light gate</figcaption>
+					</figure>
 					<p>The photodiode generates electricity when the laser points at it. This generated voltage can be measured by the FEZ, on an analog input. When the beam is unbroken, it hits the photodiode, and a voltage is generated. If the beam is broken (by the ball), the photodiode generates a lower voltage. By comparing the voltage across the photodiode to a known threshold value, it can be determined whether the light gate is obstructed.</p>
 				</section>
 			</section>
