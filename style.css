@@ -28,14 +28,14 @@ header, section, figure, figcaption, aside { display: block; }
 }
 #wrapper > section:nth-child(2n) {
 	background: #f0f0f0;
-	/*border-bottom: 1px solid #c0c0c0;
-	border-top: 1px solid #c0c0c0;*/
+}
+#wrapper > section:nth-child(2n) figure {
+	background: #f8f8f8;
 }
 
 pre.prettyprint {
 	padding: 5px;
 	margin: 0px -5px;
-	border-radius: 5px;
 	background: white;
 	border: 1px solid #c0c0c0;
 	/*box-shadow: inset 0px 1px 2px #c0c0c0;*/
@@ -149,25 +149,25 @@ figure {
 	margin: 10px;
 	margin-right: 0;
 	float: right;
-	padding: 5px;
-	border-radius: 10px;
-	background: #c0c0c0;
+	padding: 0px;
+	background: #f0f0f0;
 	behavior: url(PIE.htc);
-	box-shadow: 0px 1px 2px #606060;
+	/*box-shadow: 0px 0px 2px #606060;*/
+	border: 1px solid #c0c0c0;
 	clear: right;
 
 }
 
 figure img {
 	display: block;
-	border-radius: 5px;
 	height: 200px;
 	background: white;
 }
 
 figure figcaption {
 	text-align: center;
-	margin-top: 5px;
+	padding: 5px;
+	border-top: 1px solid #c0c0c0;
 }
 
 h2 + figure {
