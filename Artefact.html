@@ -41,7 +41,7 @@
 			<section>
 				<h2>Controller</h2>
 				<figure>
-					<img src="images/photos/FEZ.jpg" alt="FEZ Panda II"/>
+					<img src="images/photos/fez.jpg" alt="FEZ Panda II"/>
 					<figcaption>The controller</figcaption>
 				</figure>
 				<p>The controller can be though of as the "brain" of the robot. It reads from and writes to the sensors, and drives the robot in response.</p>
@@ -133,8 +133,8 @@
 				\end{array}\right]^{-1} \times \mathbf{v}
 				$$
 				<p>This is the general formula to find the rotational speed \(k_d\) of a wheel with given drive and slip vectors.</p>
-				<p>There is one more important point to note here. Since there are three wheels, it is sufficient to only control the drive vector, \(\mathbf{d}\), of each wheel. The slip vector, \(\mathbf{s}\), will automatically take the correct value. This is true because setting the speed of the motors fully defines the motion of the robot: it is deterministic. This is hard to prove, but easy to demonstrate.</p>
-				<p>The following class can be written to represent a wheel, which allows its target vector to be set. When it is set, it applies the above formula, and sets the speed of the motor.</p>
+				<p>There is one more important point to note here. Since there are three wheels, it is sufficient to only control the drive speed, \(k_d\), of each wheel. The slip speed, \(k_s\), will automatically take the correct value. This is true because setting the speed of the motors fully defines the motion of the robot: it is deterministic. This is hard to prove, but easier to demonstrate.</p>
+				<p>The following C# class can be written to represent a wheel, which allows its target vector to be set. When it is set, it applies the above formula, and sets the speed of the motor.</p>
 				<pre class="prettyprint">
 public class Wheel
 {
