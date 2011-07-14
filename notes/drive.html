@@ -19,10 +19,11 @@
 			margin-top: -5px;
 			padding: 5px;
 			margin-right: -1000px;
-			padding-right: 1205px;
+			padding-right: 1005px;
 			margin-bottom: -1000px;
 			padding-bottom: 1005px;
 			background: #f0f0f0;
+			width: 200px;
 		}
 
 		.controls label {
@@ -248,11 +249,12 @@
 		<div id="wrapper">
 			<section style="text-align: center;">
 				<div class="controls">
-					<p>Click and drag to change the direction of travel. The wheel speeds will update accordingly</p>
+					<p>Click and drag to change the direction of travel. The wheel speeds will update accordingly.</p>
 					<label class="toggler" data-toggle="drive"><input type="checkbox" checked /><span></span>Show drive vectors</label>
 					<label class="toggler" data-toggle="roll"><input type="checkbox"  /><span></span>Show roll vectors</label>
 					<label class="toggler" data-toggle="result"><input type="checkbox"  /><span></span>Show resultant vectors</label>
 					<label class="toggler" data-toggle="robot"><input type="checkbox" checked /><span></span>Show robot resultant vector</label>
+					<p>This simulation is written in Javascript, using the <a href="http://raphaeljs.com">Rapha&euml;l SVG library</a>.</p>
 				</div>
 				<div id="raphael"></div>
 			</section>
