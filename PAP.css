@@ -25,6 +25,7 @@
 }
 
 .tags li {
+	padding: 0;
 	height: 40px;
 	width: 40px;
 	margin: -5px;
@@ -106,6 +107,7 @@
 	overflow: hidden;
 	padding-left: 38px;
 }
+.content > ul li::before {content: "" !important;}
 .content > ul .work {
 	float: left;
 	width: 50%;
