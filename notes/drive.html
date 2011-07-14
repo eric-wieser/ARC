@@ -1,0 +1,260 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>Holonomic Drive Trajectories</title> 
+		<script type="text/javascript" src="../js/raphael-min.js"></script> 
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+		<script type="text/javascript" src="../js/Vector.js"></script>
+		<script type="text/javascript" src="../js/Matrix.js"></script>
+		<script type="text/javascript" src="../js/AffineTransform.js"></script>
+		<link rel="stylesheet" type="text/css" href="../style.css" />
+		<link href='http://fonts.googleapis.com/css?family=Terminal+Dosis+Light|Ubuntu:300|Ubuntu:300italic' rel='stylesheet' type='text/css' />
+		<style type="text/css">
+		.controls {
+			text-align: left;
+			overflow: hidden;
+			float: right;
+			border-left: 1px solid #c0c0c0;
+			height: 510px;
+			margin-top: -5px;
+			padding: 5px;
+			margin-right: -1000px;
+			padding-right: 1205px;
+			margin-bottom: -1000px;
+			padding-bottom: 1005px;
+			background: #f0f0f0;
+		}
+
+		.controls label {
+			display: block;
+			line-height: 20px;
+			position: relative;
+			padding-left: 20px;
+		}
+		#raphael {
+			display: inline-block;
+			vertical-align: middle;
+		}
+		.toggler input {
+			float: left;
+			margin-left: -200px;
+		}
+		.toggler span {
+			content: "";
+			width: 16px;
+			display: block;
+			height: 16px;
+			background: #404040;
+			position: absolute;
+			top: 2px;
+			left: 2px;
+			border-radius: 5px;
+		}
+		.toggler.checked span {
+			width: 12px;
+			height: 12px;
+			border: 2px solid #404040;
+			background: gray;
+		}
+		svg * {
+			vector-effect: non-scaling-stroke;
+		}
+		</style> 
+	  
+		<script type='text/javascript'> 
+		//<![CDATA[ 
+		$(function() {
+			var paper = Raphael("raphael", 500, 500);
+			var twoPi = 2 * Math.PI;
+			var center = new Vector(250,250);
+			
+			paper.customAttributes.affineTransform = function(t) {
+				return {transform: t.toSVGTransformString()};
+			}
+			paper.customAttributes.vector = function(v) {
+				return {path: 'M0 0L'+v.x+' '+v.y};
+			}
+			 
+			var Wheel = function(transform) {
+				this.radius = 30.4;
+				this.subRadius = 6;
+				this.transform = transform;
+				paper.rect(-this.radius, -4, 2 * this.radius, 8).attr({
+					affineTransform: this.transform,
+					fill: '#808080',
+					stroke: 'none'
+				});
+				this.driveVector = paper.path('M0 0L20 0').attr({
+					affineTransform: transform,
+					stroke: 'red',
+					'stroke-width': 1,
+					'stroke-linecap': 'round'
+				});
+				this.rollVector = paper.path('M0 0L0 20').attr({
+					affineTransform: transform,
+					stroke: 'yellow',
+					'stroke-width': 1,
+					'stroke-linecap': 'round'
+				});
+				this.resultantVector = paper.path('M0 0L0 20').attr({
+					affineTransform: transform,
+					stroke: 'blue',
+					'stroke-width': 1,
+					'stroke-linecap': 'round'
+				});
+				var subWheels = [];
+				for (var i = 0; i < 32; i++) {
+					var theta = twoPi * i / 32;
+					subWheels.push({
+						angle: theta,
+						elem: paper.ellipse(-this.radius, 0, this.subRadius, this.subRadius).attr({
+							fill: '#c0c0c0',
+							stroke: '#a0a0a0',
+							'stroke-width': 2
+						})
+					});
+				}
+				var circumference = twoPi * this.radius;
+				this.speed = Vector.zero;
+				this.nextFrame = function(dt) {
+					subWheels = subWheels.sort(function(a, b) {
+						var d = Math.sin(a.angle) - Math.sin(b.angle);
+						return d > 0 ? 1 : d < 0 ? -1 : 0;
+					});
+					for (var i = 0; i < subWheels.length; i++) {
+						var w = subWheels[i];
+						w.angle += this.speed.x*dt/circumference + twoPi;
+						w.angle %= twoPi;
+						var transform = this.transform.scale(new Vector(Math.cos(w.angle), 1));
+						if (w.angle <= Math.PI*1.1 || w.angle >= Math.PI*1.9)
+							w.elem
+								.show()
+								.insertBefore(this.driveVector)
+								.attr('affineTransform', transform);
+						else
+							w.elem.hide();
+					}
+					this.driveVector.attr('vector', this.speed.times(Vector.i));
+					this.rollVector.attr('vector', this.speed.times(Vector.j));
+					this.resultantVector.attr('vector', this.speed);
+				}
+			}
+			 
+			var robotTransform = new AffineTransform(center).scale(1.75);//'t250,250s1.75,1.75,0,0';
+			 
+			var wheelOffset = new AffineTransform(new Vector(0,90));
+			
+			paper.circle(0, 0, 105).attr({
+				affineTransform: robotTransform,
+				fill: '#404040'
+			});
+			
+			//robotTransform = robotTransform.toSVGTransformString();
+			
+			var wheels = [
+				new Wheel(robotTransform.combine(wheelOffset)),
+				new Wheel(robotTransform.rotate(-twoPi/3).combine(wheelOffset)),
+				new Wheel(robotTransform.rotate(twoPi/3).combine(wheelOffset))
+			];
+			 
+			function update() {
+				var time = +new Date();
+				var deltaTime = (time - this.lastUpdate)/1000;
+				this.lastUpdate = time;
+				if(deltaTime != deltaTime) return;
+				for (var i = 0; i < wheels.length; i++)
+					wheels[i].nextFrame(deltaTime);
+			}
+			update.lastUpdate = +new Date();
+			setInterval(update, 50);
+			 
+			var motion = paper.path('M0 0L20 0').attr({
+				affineTransform: robotTransform,
+				stroke: 'blue',
+				'stroke-width': 1,
+				'stroke-linecap': 'round'
+			});
+			 
+			function setSpeed(v) {
+				//var v = Vector.fromPolarCoords(speed, heading/180 * Math.PI);
+				motion.attr('path', 'M0 0L' + v.x + ' ' + v.y);
+				
+				v = robotTransform.vectorToWorldSpace(v);
+				
+				for (var i = 0; i < wheels.length; i++)
+					wheels[i].speed = wheels[i].transform.vectorToObjectSpace(v);
+			}
+						   
+			 /*
+			var heading = 0;
+			setInterval(function() {			  
+				setSpeed(heading++, 1.5);
+			}, 100);*/
+			
+			function updateMouse(pos) {
+				var robotPos = robotTransform.toObjectSpace(pos);
+				setSpeed(robotPos);
+			}
+			
+			var mouseDown = false;
+			$('#raphael').mousemove(function(e) {
+				if(mouseDown) {
+					var o = $(this).offset();
+					var mousePos = new Vector(e.pageX - o.left, e.pageY - o.top);
+					updateMouse(mousePos);
+				}
+			}).mousedown(function(e) {
+				mouseDown = true;
+				$(this).css('cursor','move');
+				var o = $(this).offset();
+				var mousePos = new Vector(e.pageX - o.left, e.pageY - o.top);
+				updateMouse(mousePos);
+			}).mouseup(function(e) {
+				mouseDown = false;
+				$(this).css('cursor','auto');
+			}).bind('selectstart', function() {
+				return false;
+			});
+	
+			setSpeed(Vector.i.times(50));
+			var vectors = {
+				drive: paper.set(),
+				roll: paper.set(),
+				result: paper.set(),
+				robot: motion
+			}
+			for(var i = 0; i < wheels.length; i++) {
+				vectors.drive.push(wheels[i].driveVector);
+				vectors.roll.push(wheels[i].rollVector);
+				vectors.result.push(wheels[i].resultantVector);
+			}
+			
+			function toggle() {
+				var checked = $(this).find('input').prop('checked');
+				var toToggle = $(this).data('toggle');
+				if(checked)
+					vectors[toToggle].show(), $(this).addClass('checked');
+				else
+					vectors[toToggle].hide(), $(this).removeClass('checked');
+			}
+			
+			$('.toggler').click(toggle).each(toggle);
+		})
+		//]]> 
+		</script> 
+	</head> 
+	<body>
+		<h1><span>Holonomic Drive Trajectories</span></h1>
+		<div id="wrapper">
+			<section style="text-align: center;">
+				<div class="controls">
+					<label class="toggler" data-toggle="drive"><input type="checkbox" checked /><span></span>Show drive vectors</label>
+					<label class="toggler" data-toggle="roll"><input type="checkbox"  /><span></span>Show roll vectors</label>
+					<label class="toggler" data-toggle="result"><input type="checkbox"  /><span></span>Show resultant vectors</label>
+					<label class="toggler" data-toggle="robot"><input type="checkbox" checked /><span></span>Show robot resultant vector</label>
+				</div>
+				<div id="raphael"></div>
+			</section>
+		</div>
+	</body>
+</html>
