@@ -212,17 +212,17 @@ figure + figure {
 	margin-top: 0px;
 }
 aside.horizontal {
-	text-align: justify;
+	text-align: center;
 	margin: -5px;
 	font-size: 0;
 }
 
-aside.horizontal span {
+/*aside.horizontal span {
 	display: inline-block;
 	position: relative;
 	width: 100%;
 	height: 0;
-}
+}*/
 
 aside.horizontal figure {
 	float: none;
@@ -266,10 +266,9 @@ aside.horizontal figure {
 @media print {
 	#MathJax_Message { display: none;}
 	#wrapper {width: auto; max-width: none; min-width: none;}
-	html {zoom: 0.9;}
 }
 
-a::after {
+a[href^="http"]::after {
 	content: " (" attr(href) ")";
 	color: #404040;
 	font-size: 10px;
