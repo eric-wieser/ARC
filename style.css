@@ -1,5 +1,5 @@
 body {
-	font-family: /*'Ubuntu',*/ 'Calibri', 'Arial';
+	font-family: 'Ubuntu', 'Calibri', 'Arial';
 	background: #f8f8f8;
 	line-height: 20px;
 	font-weight: 300;
@@ -275,7 +275,7 @@ a[href^="http"]::after {
 	line-height: 10px;
 }
 a[href^="http"][data-author]::after {
-	content: " (" attr(href) ", " attr(data-author) ")";
+	content: " (" attr(href) ",\3000" attr(data-author) ")";
 	color: #404040;
 	font-size: 10px;
 	line-height: 10px;
