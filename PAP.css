@@ -53,6 +53,7 @@
 .entry {
 	overflow: hidden;
 	padding-bottom: 10px;
+	text-align: left;
 }
 
 .content {

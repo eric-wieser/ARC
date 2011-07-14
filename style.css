@@ -37,8 +37,8 @@ header, section, figure, figcaption, aside { display: block; }
 	margin: 0px -1000px;
 	border-bottom: 1px solid #c0c0c0;
 	/*border-top: 1px solid #e0e0e0;*/
-	page-break-inside: avoid;
 }
+#wrapper > section > section { page-break-inside: avoid; }
 #wrapper > section:nth-child(2n) {
 	background: #f0f0f0;
 }
@@ -231,7 +231,7 @@ figure + figure {
 aside.horizontal {
 	page-break-inside: avoid;
 	text-align: center;
-	margin: -5px;
+	margin: -5px -15px;
 	font-size: 0;
 }
 
@@ -283,7 +283,7 @@ aside.horizontal figure {
 
 @media print {
 	#MathJax_Message { display: none;}
-	#wrapper {width: auto; max-width: none; min-width: none; height: auto; margin-top: 0;}
+	#wrapper {width: auto; max-width: none; min-width: none; height: auto; }
 }
 
 a[href^="http"]::after {
