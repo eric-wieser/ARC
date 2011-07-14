@@ -6,7 +6,11 @@ body {
 	text-align: justify;
 	margin: 0;
 	padding: 0;
-	overflow-x: hidden;
+}
+
+html,body {
+	overflow-x:hidden;
+	width: 100%;
 }
 
 header, section, figure, figcaption, aside { display: block; }
@@ -16,6 +20,15 @@ header, section, figure, figcaption, aside { display: block; }
 	max-width: 1024px;
 	margin: auto;
 	padding: 0px 10px;
+		margin-top: 50px;
+}
+
+@media screen {
+	#wrapper {
+	}
+	h1 {
+		position: fixed !important;
+	}
 }
 
 #wrapper > section {
@@ -134,6 +147,11 @@ h1 {
 	border-bottom: 1px solid #808080;
 	margin: 0;
 	padding: 10px;
+	z-index:100;
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
 }
 h2 {
 	font-family: 'Terminal Dosis Light', 'Agency FB', 'Arial Narrow';
@@ -265,7 +283,7 @@ aside.horizontal figure {
 
 @media print {
 	#MathJax_Message { display: none;}
-	#wrapper {width: auto; max-width: none; min-width: none;}
+	#wrapper {width: auto; max-width: none; min-width: none; height: auto; margin-top: 0;}
 }
 
 a[href^="http"]::after {
