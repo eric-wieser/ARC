@@ -325,12 +325,12 @@ ul {
 	padding-left:20px;
 	margin: 0;
 }
-li {
+ul li {
 	padding-left:20px;
 	position: relative;
 	margin: 0;
 }
-li::before {
+ul li::before {
 	content: "\2022";
 	display: block;
 	font-size: 20px;
@@ -375,3 +375,34 @@ ul.source-list li a::after {
 @page {
 	margin: 1cm;
 }
+
+.contents {
+	font-family: 'Terminal Dosis Light', 'Agency FB', 'Arial Narrow';
+	line-height: 30px;
+	font-size: 150%;
+	margin: 0;
+	padding: 0;
+}
+
+.contents, .contents ol {
+	list-style: none;}
+
+.contents li a {
+	font-family: 'Ubuntu', 'Calibri', 'Arial';
+	border-bottom: 1px solid;
+	display: block;
+	color: inherit;
+}
+
+.contents li { font-weight: bold; }
+.contents li a {border-bottom-color: #808080;}
+
+.contents ol li { font-weight: normal; }
+.contents ol li a {border-bottom-color: #c0c0c0;}
+
+.contents ol ol li { font-size: 66.66%; line-height: 20px;}
+.contents ol ol li a {border-bottom-color: #f0f0f0;}
+/*
+.contents ol ol ol li { display: inline;}
+.contents ol ol ol li a { display: inline; border: none;}
+.contents ol ol ol li::after { content:", ";}*/
