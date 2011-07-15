@@ -360,6 +360,11 @@
 				Justifies building the other motor controllers, since the design is now known to work.
 			</purpose>
 		</work>
+		<work>
+			<description>
+				Move the writeup over to HTML, after getting frustrated with Word
+			</description>
+		</work>
 		<todo>
 			Finalize the power board design, so that too can be built and tested
 		</todo>
@@ -552,7 +557,7 @@
 		<date>30/06/2011</date>
 		<work>
 			<description>
-				Attempted to refine PID Controller. Discovered a jammed motor
+				Attempted to refine PID Controller. Discovered a jammed motor.
 			</description>
 			<purpose>
 				This is bad. Very bad.
@@ -560,7 +565,7 @@
 		</work>
 		<work>
 			<description>
-				Dismantled broken motor, and found a broken tooth inside. Reassembled with broken tooth removed, to no avail. Ordered a pair of spare motors, which should arrive before the competition.
+				Dismantled broken motor, and found a broken tooth inside. Reassembled with broken tooth removed, to no avail. Ordered a set of 4 spare motors, which should arrive before the competition.
 			</description>
 			<purpose>
 				I'm worried that another gear tooth will break off during the competition. It's critical that both robots are functional for the duration of the competition, so the only real option at this point is to have spares.
@@ -585,5 +590,123 @@
 		<todo>
 			Write some more advanced soccer strategies, with a different robot and goalie strategy.
 		</todo>
+	</entry>
+	<entry tags="software">
+		<date>01/07/2011</date>
+		<work commit="e5bb9d87278dfa8849f2">
+			<description>
+				Did a tonne of code refactoring
+			</description>
+			<purpose>
+				Refactoring makes code easier to read and write. The easier it is to write at the venue, the better.
+			</purpose>
+		</work>
+	</entry>
+	<entry tags="software">
+		<date>02/07/2011</date>
+		<work>
+			<description>
+				After trying the robot again with the replaced motor and regulation code, nothing seems to work.
+			</description>
+			<purpose>
+				Could be a wiring problem, could be a software problem
+			</purpose>
+		</work>
+		<todo>Help Andrew diagnose the problem over the phone while in Geneva</todo>
+	</entry>
+	<entry tags="software">
+		<date>06/07/2011</date>
+		<work>
+			<description>
+				Arrive in istanbul for practice day. Make further code refactorings, and read over Andrew's changes. Too tired to make any big changes
+			</description>
+		</work>
+		<todo>Check andrew's code works</todo>
+	</entry>
+	<entry tags="software mechanics">
+		<date>07/07/2011</date>
+		<work>
+			<description>
+				Bugfixes.
+			</description>
+			<purpose>
+				It's easy to introduce bugs without knowing it. Often having someone else read the code helps you find them.
+			</purpose>
+		</work>
+		<work>
+			<description>
+				5th and 6th motors die. Same problem as before.
+			</description>
+			<purpose>
+				Only enough functional motors to drive one robot.
+			</purpose>
+		</work>
+		<todo>Try as hard as possible not to break any more motors</todo>
+	</entry>
+	<entry tags="mechanics">
+		<date>08/07/2011</date>
+		<work>
+			<description>
+				7th and 8th motors die in the same way. Game over.
+			</description>
+		</work>
+	</entry>
+	<entry>
+		<date>12/07/2011</date>
+		<work>
+			<description>
+				Write the evaluation
+			</description>
+			<purpose>
+				Now that the competition has happened, the robots can be properly evaluated
+			</purpose>
+		</work>
+		<todo>Work out how to print these HTML files I keep creating</todo>
+	</entry>
+	<entry>
+		<date>13/07/2011</date>
+		<work>
+			<description>
+				Compile my list of resources into one document, the bibliography.
+			</description>
+		</work>
+		<todo>Compile a set of notes, finish the essay</todo>
+	</entry>
+	<entry>
+		<date>14/07/2011</date>
+		<work>
+			<description>
+				Worked out how to get them to print. Only Internet Explorer 9 is fully capable.
+			</description>
+		</work>
+		<work>
+			<description>
+				Finised off the essay
+			</description>
+		</work>
+		<work>
+			<description>
+				Completed PPR
+			</description>
+		</work>
+		<todo>Finishing touches</todo>
+	</entry>
+	<entry>
+		<date>15/07/2011</date>
+		<work>
+			<description>
+				Print out everything
+			</description>
+		</work>
+		<work>
+			<description>
+				Do presentation
+			</description>
+		</work>
+		<work>
+			<description>
+				Hand in project
+			</description>
+		</work>
 	</entry>
 </pap>
