@@ -284,6 +284,16 @@ aside.horizontal figure {
 @media print {
 	#MathJax_Message { display: none;}
 	#wrapper {width: auto; max-width: none; min-width: none; height: auto; }
+	#wrapper > section {
+		background: transparent;
+		margin: 0px;
+		padding: 5px;
+		padding-bottom: 15px;
+		border: none;
+	}
+	#wrapper > section:nth-child(2n) {
+		border: 1px solid #c0c0c0;
+	}
 }
 
 a[href^="http"]::after {
