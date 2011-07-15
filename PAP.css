@@ -120,8 +120,8 @@
 	/*Width: 50% + (4 + 14 + 1)px = 50% + 19px;*/
 	margin-left: -38px;
 
-	margin-bottom: -1000px;
-	padding-bottom: 1004px;
+	/*margin-bottom: -1000px;
+	padding-bottom: 1004px;*/
 }
 .content > ul .purpose {
 	float: left;
@@ -131,8 +131,8 @@
 	border-left: 1px solid #c0c0c0;
 	/*Width: 50% + (4 + 14 + 1 - 1)px = 50% + 18px;*/
 
-	margin-bottom: -1000px;
-	padding-bottom: 1004px;
+	/*margin-bottom: -1000px;
+	padding-bottom: 1004px;*/
 }
 .todo {
 	line-height: 20px;
