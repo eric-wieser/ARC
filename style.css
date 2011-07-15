@@ -402,7 +402,7 @@ ul.source-list li a::after {
 
 .contents ol ol li { font-size: 66.66%; line-height: 20px;}
 .contents ol ol li a {border-bottom-color: #f0f0f0;}
-/*
-.contents ol ol ol li { display: inline;}
-.contents ol ol ol li a { display: inline; border: none;}
+
+.contents ol ol ol { display: none;}
+/*.contents ol ol ol li a { display: inline; border: none;}
 .contents ol ol ol li::after { content:", ";}*/
