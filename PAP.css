@@ -149,3 +149,7 @@
 	margin-right: 1ex;
 	height: 20px;
 }
+
+#s2011-02, #s2011-04, #s2011-05, #s2011-06 {
+	page-break-before: always;
+}

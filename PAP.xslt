@@ -65,7 +65,7 @@
 		<xsl:variable name="y" select="substring(date,7,4)" />
 		<xsl:variable name="ym" select="concat($y, $m)" />
 		<xsl:variable name="label" select="$config/cfg:months/cfg:month[@id = $m]/@name" />
-		<section class="month" id="{$y}-{$m}">
+		<section class="month" id="s{$y}-{$m}">
 			<h2 class="name">
 				<xsl:value-of select="$label"/>
 				<xsl:text> </xsl:text>
