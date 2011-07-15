@@ -29,7 +29,7 @@
 		<date>14/01/2011</date>
 		<work>
 			<description>Investigation into the physics of motors. Differential equations linking stall torque, free-running-RPM, mass, and robot configuration to velocity and displacement after a certain time.</description>
-			<purpose>Help me choose an appropiately spec-ed motor for use in the robot</purpose>
+			<purpose>Help me choose an appropriately powerful motor for use in the robot</purpose>
 		</work>
 	</entry>
 	<entry tags="software">
@@ -42,7 +42,7 @@
 			<description>Various research on microcontrollers. Mbed is faster, and the IDE will drive me mad, but Netduino is slower, and will not. Also, I already have one of these</description>
 			<purpose>Helps me decide on the microcontroller to use in the robot</purpose>
 		</work>
-		<todo>Stop stalling and buy a netduino</todo>
+		<todo>Stop stalling and buy a Netduino</todo>
 	</entry>
 	<entry tags="mechanics">
 		<date>28/01/2011</date>
@@ -136,7 +136,7 @@
 	<entry tags="software, electronics">
 		<date>13/04/2011</date>
 		<work>
-			<description>Found out about yet another controller, the FEZ Panda II, which was released a few weeks ago. Much higher spec'd than the Netduino. Looks like procrastination paid off!</description>
+			<description>Found out about yet another controller, the FEZ Panda II, which was released a few weeks ago. Much more powerful than the Netduino. Looks like procrastination paid off!</description>
 			<purpose>Gives me YET MORE CHOICES.</purpose>
 		</work>
 		<todo>Narrow down the choices.</todo>
@@ -155,12 +155,12 @@
 	<entry tags="mechanics">
 		<date>17/04/2011</date>
 		<work>
-			<description>Andrew recieves split rings and washers. Measures them.</description>
+			<description>Andrew receives split rings and washers. Measures them.</description>
 			<purpose>Allows wheel to be accurately CADed</purpose>
 		</work>
 		<work>
 			<description>Inside of wheel CADed. Once for each of the three times he measured the parts wrongly</description>
-			<purpose>Got more acquanted with the works of the CAD package I was using</purpose>
+			<purpose>Got more acquainted with the works of the CAD package I was using</purpose>
 		</work>
 		<todo>
 			Make Andrew use calipers to measure parts
@@ -218,7 +218,7 @@
 				Created a functional Git Repository <a href="https://github.com/eric-wieser/Robocup-Junior-Soccer-2011">on GitHub</a>.
 			</description>
 			<purpose>
-				Git Repositories keep track of all the changes being made to the code as itis being writtenn. That way, if a mistake is made and the software broken, the code can be reverted to a previous, working, revision. Additionally, all the code is backed up on the web</purpose>
+				Git Repositories keep track of all the changes being made to the code as it is being written. That way, if a mistake is made and the software broken, the code can be reverted to a previous, working, revision. Additionally, all the code is backed up on the web</purpose>
 		</work>
 		<todo>Write some code to fill up the repository!</todo>
 	</entry>
@@ -507,7 +507,7 @@
 		<date>27/06/2011</date>
 		<work commit="48431223f49ad2d6cc42">
 			<description>
-				Looked into RLP. Set everthing up, and wrote an RLP procedure in C to read all the sensors. <em>Way</em> faster than the managed C# code.
+				Looked into RLP. Set everything up, and wrote an RLP procedure in C to read all the sensors. <em>Way</em> faster than the managed C# code.
 			</description>
 			<purpose>
 				This is looking very good. I was really worried that the processor would simply not be fast enough to process all the readings in a reasonable time, but I was pleasantly surprised.
@@ -532,7 +532,7 @@
 				Tested a lot of drive code, as parts of it were not functioning correctly. Turned out it was a Matrix multriplication problem
 			</description>
 			<purpose>
-				It's slightly alarming that I didn't spot this earlier. I guess that's what happens if you write code without testing ig. At least it's working now
+				It's slightly alarming that I didn't spot this earlier. I guess that's what happens if you write code without testing it. At least it's working now
 			</purpose>
 		</work>
 		<todo>
@@ -681,7 +681,7 @@
 		</work>
 		<work>
 			<description>
-				Finised off the essay
+				Finished off the essay
 			</description>
 		</work>
 		<work>
