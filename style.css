@@ -312,6 +312,9 @@ a[href^="http"][data-author]::after {
 	font-size: 10px;
 	line-height: 10px;
 }
+a.book::after {
+	content: attr(data-author) ",\3000" attr(data-publisher) ",\3000" attr(data-year) !important;
+}
 acronym, abbr {border: none;}
 acronym::after, abbr::after {
 	content: " (" attr(title) ")";
